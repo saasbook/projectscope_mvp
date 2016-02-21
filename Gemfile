@@ -33,6 +33,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
+  
+  # If you plan to use JavaScript/CoffeeScript
+  # gem 'jasmine-rails'
 end
 
 group :development do
@@ -44,6 +47,19 @@ group :development do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+end
+
+# Setup Cucumber, RSpec, autotest support
+group :test do
+  gem 'rspec-rails', '2.14'
+  gem 'simplecov', :require => false
+  gem 'cucumber-rails', :require => false
+  gem 'cucumber-rails-training-wheels'
+  
+  # Basic imperative step defs
+  gem 'database_cleaner' # required for Cucumber
+  # gem 'factory_girl_rails' # if using FactoryGirl
+  gem 'metric_fu' # collect code metrics
 end
 
 group :production do
