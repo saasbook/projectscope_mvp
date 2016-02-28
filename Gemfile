@@ -52,13 +52,16 @@ end
 
 # Setup Cucumber, RSpec, autotest support
 group :test do
-  gem 'rspec-rails', '2.14'
+  gem 'rspec-rails'
   gem 'simplecov', :require => false
   gem 'cucumber-rails', :require => false
   gem 'cucumber-rails-training-wheels'
   
   # Basic imperative step defs
-  gem 'database_cleaner' # required for Cucumber
+  
+  # required for Cucumber
+  gem 'database_cleaner'
+  gem 'autotest-rails'
   # gem 'factory_girl_rails' # if using FactoryGirl
   gem 'metric_fu' # collect code metrics
 end
