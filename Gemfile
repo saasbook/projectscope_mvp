@@ -32,6 +32,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # gem 'capistrano-rails', group: :development
 
 group :development, :test do
+  # Use sqlite3 as the database for Active Record
+  gem 'sqlite3'
+  
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
   
@@ -40,9 +43,6 @@ group :development, :test do
 end
 
 group :development do
-  # Use sqlite3 as the database for Active Record
-  gem 'sqlite3'
-
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
 
@@ -64,7 +64,9 @@ group :test do
 end
 
 group :production do
-  gem 'pg'  # Use PostgreSQL in production (Heroku)
+  # Use PostgreSQL in production (Heroku)
+  gem 'pg'
+  # Heroku specific production settings
   gem 'rails_12factor'
 end
 
