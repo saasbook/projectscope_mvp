@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+ruby '2.2.2'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5'
@@ -31,6 +32,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # gem 'capistrano-rails', group: :development
 
 group :development, :test do
+  # Use sqlite3 as the database for Active Record
+  gem 'sqlite3'
+  
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
   
@@ -39,9 +43,6 @@ group :development, :test do
 end
 
 group :development do
-  # Use sqlite3 as the database for Active Record
-  gem 'sqlite3'
-
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
 
@@ -51,19 +52,24 @@ end
 
 # Setup Cucumber, RSpec, autotest support
 group :test do
-  gem 'rspec-rails', '2.14'
+  gem 'rspec-rails'
   gem 'simplecov', :require => false
   gem 'cucumber-rails', :require => false
   gem 'cucumber-rails-training-wheels'
   
   # Basic imperative step defs
-  gem 'database_cleaner' # required for Cucumber
+  
+  # required for Cucumber
+  gem 'database_cleaner'
+  gem 'autotest-rails'
   # gem 'factory_girl_rails' # if using FactoryGirl
   gem 'metric_fu' # collect code metrics
 end
 
 group :production do
-  gem 'pg'  # Use PostgreSQL in production (Heroku)
+  # Use PostgreSQL in production (Heroku)
+  gem 'pg'
+  # Heroku specific production settings
   gem 'rails_12factor'
 end
 
