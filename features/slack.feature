@@ -1,4 +1,4 @@
-Feature: slac
+Feature: slack
 
   As an instructor
   So that I can gauge a group's communication
