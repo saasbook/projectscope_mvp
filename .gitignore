@@ -15,3 +15,6 @@
 /log/*
 !/log/.keep
 /tmp
+
+# Ignore spring-1000 cuz it's just used for local dev cache
+/spring-1000
