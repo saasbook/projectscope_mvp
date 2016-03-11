@@ -34,6 +34,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use haml for templates
 gem 'haml' 
 
+# Make http requests easire
+gem 'httparty'
+
 group :development, :test do
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3'
