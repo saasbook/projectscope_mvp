@@ -5,7 +5,7 @@ describe ProjectsHelper do
     before :each do
       @metric = double('metric')
       @data_hash = {:red => 9, :yellow => 9, :green => 6}
-      expect(@metric).to receive(:get_data).and_return(@data_hash)
+      @metric.should_receive(:get_data).and_return(@data_hash)
     end
     it 'should call the model method that retrieves the metric data' do
       graphic @metric
