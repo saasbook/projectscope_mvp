@@ -37,6 +37,9 @@ gem 'haml'
 # Make http requests easire
 gem 'httparty'
 
+# For GitHub
+gem 'octokit'
+
 group :development, :test do
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3'
@@ -79,4 +82,3 @@ group :production do
   # Heroku specific production settings
   gem 'rails_12factor'
 end
-
