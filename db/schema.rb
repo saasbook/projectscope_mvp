@@ -11,11 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160310212951) do
+ActiveRecord::Schema.define(version: 20160311032209) do
 
   create_table "projects", force: :cascade do |t|
     t.string   "name"
     t.string   "git_repo"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "pull_requests", force: :cascade do |t|
+    t.integer  "red"
+    t.integer  "yellow"
+    t.integer  "green"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

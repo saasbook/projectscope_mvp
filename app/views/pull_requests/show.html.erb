@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Red:</strong>
+  <%= @pull_request.red %>
+</p>
+
+<p>
+  <strong>Yellow:</strong>
+  <%= @pull_request.yellow %>
+</p>
+
+<p>
+  <strong>Green:</strong>
+  <%= @pull_request.green %>
+</p>
+
+<%= link_to 'Edit', edit_pull_request_path(@pull_request) %> |
+<%= link_to 'Back', pull_requests_path %>
