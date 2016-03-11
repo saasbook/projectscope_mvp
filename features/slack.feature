@@ -7,4 +7,4 @@ Feature: slac
 
 Scenario: view slack graphic on home page
   Given I am on the home page
-  Then I should see a graphic representing slack metrics in a row of the projects table
+  Then I should see a graphic representing Slack metrics in a row of the projects table

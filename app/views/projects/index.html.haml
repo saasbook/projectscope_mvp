@@ -7,6 +7,8 @@
     %tr
       %th Name
       %th Git repo
+      %th Pull Requests
+      %th Slack
       %th{:colspan => "3"}
 
   %tbody
@@ -14,6 +16,8 @@
       %tr
         %td= project.name
         %td= project.git_repo
+        %td= graphic project.pull_request_metric
+        %td= graphic project.slack
         %td= link_to 'Show', project
         %td= link_to 'Edit', edit_project_path(project)
         %td= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' }

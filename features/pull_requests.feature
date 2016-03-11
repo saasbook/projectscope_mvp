@@ -7,4 +7,4 @@ Feature: pull requests
 
 Scenario: view pull requests graphic on home page
   Given I am on the home page
-  Then I should see a graphic representing pull request metrics in a row of the projects table
+  Then I should see a graphic representing Pull Requests metrics in a row of the projects table
