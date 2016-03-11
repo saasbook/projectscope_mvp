@@ -6,4 +6,4 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-Project.create(name: 'ER Moonlighter Scheduling', git_repo: 'stevenbuccini/er-moonlighter-scheduler')
+Project.create(name: 'ER Moonlighter Scheduling', git_repo: 'https://github.com/stevenbuccini/er-moonlighter-scheduler')
