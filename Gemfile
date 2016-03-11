@@ -39,6 +39,8 @@ gem 'httparty'
 
 # For GitHub
 gem 'octokit'
+# For Slack
+gem 'slack-ruby-client'
 
 group :development, :test do
   # Use sqlite3 as the database for Active Record
