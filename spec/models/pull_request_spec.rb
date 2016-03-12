@@ -6,7 +6,10 @@ describe PullRequest do
     #   pending
     # end
     it 'should return a hash with keys red, yellow, green' do
-      pending
+      pull_request = PullRequest.create
+      expect(pull_request.get_data[:red]).to be >= 0
+      expect(pull_request.get_data[:yellow]).to be >= 0
+      expect(pull_request.get_data[:green]).to be >= 0
     end
   end
 end
