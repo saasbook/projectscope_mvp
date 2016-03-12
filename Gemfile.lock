@@ -47,6 +47,10 @@ GEM
     ast (2.2.0)
     autotest-rails (4.2.1)
       ZenTest (~> 4.5)
+    better_errors (2.1.1)
+      coderay (>= 1.0.0)
+      erubis (>= 2.6.6)
+      rack (>= 0.9.0)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
     builder (3.2.2)
@@ -118,6 +122,8 @@ GEM
     faraday_middleware (0.10.0)
       faraday (>= 0.7.4, < 0.10)
     fattr (2.2.2)
+    figaro (1.1.1)
+      thor (~> 0.14)
     flay (2.7.0)
       erubis (~> 2.7.0)
       ruby_parser (~> 3.0)
@@ -342,11 +348,13 @@ PLATFORMS
 
 DEPENDENCIES
   autotest-rails
+  better_errors
   byebug
   coffee-rails (~> 4.1.0)
   cucumber-rails
   cucumber-rails-training-wheels
   database_cleaner
+  figaro
   haml
   httparty
   jbuilder (~> 2.0)
