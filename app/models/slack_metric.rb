@@ -9,13 +9,6 @@ class SlackMetric < ActiveRecord::Base
       user_contributions[user.name] = client.search_all(query: "from:@#{user.name}").messages.total
     end
     
-    return total_messages = user_contributions.values.sum
-    # user_contributions = user_contributions.inject({}) { |h, (k, v) | h[k] = v.to_f / total_messages; h }
-    # avg_contribution = user_contributions.values.inject{ |sum, el| sum + el }.to_f / user_contributions.values.size
-    # return avg_contribution
-    # expected_contribution = 1.0 / users.length
-    
-    
+    return user_contributions.values.sum
   end
-
 end

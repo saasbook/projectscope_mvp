@@ -33,5 +33,4 @@ class PullRequest < ActiveRecord::Base
               :green => pulls_with_comments.count {|x| x >= 3}
             }
   end
-
 end
