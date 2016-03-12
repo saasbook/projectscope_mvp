@@ -37,10 +37,18 @@ gem 'haml'
 # Make http requests easire
 gem 'httparty'
 
+# For storing API keys
+gem 'figaro'
+
+### API GEMS ###
+
 # For GitHub
 gem 'octokit'
 # For Slack
 gem 'slack-ruby-client'
+
+################
+
 
 group :development, :test do
   # Use sqlite3 as the database for Active Record
@@ -59,6 +67,9 @@ group :development do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+  
+  # Better error output
+  gem 'better_errors'
 end
 
 # Setup Cucumber, RSpec, autotest support
