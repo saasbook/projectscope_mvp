@@ -16,8 +16,8 @@
       %tr
         %td= project.name
         %td= project.git_repo
-        %td= raw(graphic(project.slack_metric))
-        %td= raw(graphic(project.pull_request))
+        %td= raw(slack_graphic(project.slack_metric))
+        %td= raw(pull_request_graphic(project.pull_request))
         %td= link_to 'Show', project
         %td= link_to 'Edit', edit_project_path(project)
         %td= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' }

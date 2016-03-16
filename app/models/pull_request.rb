@@ -29,8 +29,8 @@ class PullRequest < ActiveRecord::Base
     
     pulls_with_comments = comments_hash.values
     return  { :red => total_prs - pulls_with_comments.length,
-              :yellow => pulls_with_comments.count {|x| x > 0 and x < 3},
-              :green => pulls_with_comments.count {|x| x >= 3}
+              :yellow => pulls_with_comments.count {|x| x == 1},
+              :green => pulls_with_comments.count {|x| x >= 2}
             }
   end
 end
