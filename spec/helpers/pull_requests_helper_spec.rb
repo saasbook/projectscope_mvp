@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe ProjectsHelper do
+describe PullRequestsHelper do
   describe 'presenting the graphic of a metric' do
     before :each do
       @metric = double('metric')
@@ -8,10 +8,10 @@ describe ProjectsHelper do
       @metric.should_receive(:get_data).and_return(@data_hash)
     end
     it 'should call the model method that retrieves the metric data' do
-      graphic @metric
+      pull_request_graphic @metric
     end
     it 'should return some html with the class "graphic"' do
-      expect(graphic(@metric)).to match(/.*?graphic.*?/)
+      expect(pull_request_graphic(@metric)).to match(/.*?pull_request_graphic.*?red.*?yellow.*?green.*?/)
     end
   end
 end
