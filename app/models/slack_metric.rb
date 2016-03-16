@@ -6,9 +6,11 @@ class SlackMetric < ActiveRecord::Base
     users = client.users_list.members
     user_contributions = {}
     users.each do |user|
-      user_contributions[user.name] = client.search_all(query: "from:@#{user.name}").messages.total
+      unless user.name == "slackbot"
+        user_contributions[user.name] = client.search_all(query: "from:@#{user.name}").messages.total
+      end
     end
     
-    return user_contributions.values.sum
+    return user_contributions
   end
 end
