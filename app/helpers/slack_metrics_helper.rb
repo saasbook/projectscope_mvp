@@ -3,11 +3,10 @@ module SlackMetricsHelper
   def slack_graphic(metric)
     user_contributions = metric.get_data
     total_msgs = user_contributions.values.sum
-    expected_contribution = (1.0 / user_contributions.length)
-    user_contributions.each do |user, value|
-      contribution = (value.to_f / total_msgs)
+    expected_contribution = total_msgs / user_contributions.length
+    user_contributions.each do |user, contribution|
       if contribution < expected_contribution
-        user_contributions[user] = ((contribution / expected_contribution) * 4).floor
+        user_contributions[user] = ((contribution.to_f / expected_contribution) * 3).ceil
       else
         user_contributions[user] = 3
       end
