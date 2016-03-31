@@ -79,6 +79,7 @@ group :test do
   gem 'cucumber-rails', :require => false
   gem 'cucumber-rails-training-wheels'
   gem 'test-unit'
+  gem "codeclimate-test-reporter", :require => nil
   
   # Basic imperative step defs
   
