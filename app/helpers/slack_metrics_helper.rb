@@ -22,6 +22,6 @@ module SlackMetricsHelper
   
   def slack_color_block(score)
     color_hash = {0 => 'red', 1 => 'orange', 2 => 'yellow', 3 => 'green'}
-    return "<div style = 'width: 25px; height: 25px; background: #{color_hash[score]}; float: left;'></div>"
+    return "<div id = 'slack' style = 'background: #{color_hash[score]};'></div>"
   end
 end
