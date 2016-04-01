@@ -32,7 +32,10 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # gem 'capistrano-rails', group: :development
 
 # Use haml for templates
-gem 'haml' 
+gem 'haml'
+
+# Use bootstrap to make style pretty
+gem 'bootstrap-sass'
 
 # Make http requests easire
 gem 'httparty'
