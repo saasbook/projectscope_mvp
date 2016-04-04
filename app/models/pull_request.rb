@@ -26,10 +26,14 @@ class PullRequest < ActiveRecord::Base
             comments_hash[pull_no] = 1
         end
     end
+    
+    yellow_cutoff = 1
+    green_cutoff = 2
+    
     pulls_with_comments = comments_hash.values
     red = total_prs - pulls_with_comments.length
-    yellow = pulls_with_comments.count {|x| x == 1}
-    green = pulls_with_comments.count {|x| x >= 2}
+    yellow = pulls_with_comments.count {|x| x == yellow_cutoff}
+    green = pulls_with_comments.count {|x| x >= green_cutoff}
     update(red, yellow, green)
     return  { :red => red,
               :yellow => yellow,

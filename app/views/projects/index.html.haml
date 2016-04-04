@@ -1,27 +1,30 @@
 %p{:id => "notice"}= notice
 
-%h2 Project Listing
-
-%table
-  %thead
-    %tr
-      %th Name
-      %th Git repo
-      %th Slack
-      %th Pull Requests
-      %th{:colspan => "3"}
-
-  %tbody
-    - @projects.each do |project|
-      %tr
-        %td= project.name
-        %td= project.git_repo
-        %td= raw(slack_graphic(project.slack_metric))
-        %td= raw(pull_request_graphic(project.pull_request))
-        %td= link_to 'Show', project
-        %td= link_to 'Edit', edit_project_path(project)
-        %td= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' }
-
-%br
-
-= link_to 'Add a Project', new_project_path
+.container-fluid
+  .row
+    %div{:class => ['col-sm-12', 'col-md-12', 'main']}
+      %h1.page-header Project Stats
+      
+      .table-responsive
+      
+        %table{:class => ['table', 'table-striped']}
+          %thead
+            %tr
+              %th
+              %th Pull Requests
+              %th{:colspan => "2"}
+        
+          %tbody
+            - @projects.each do |project|
+              %tr
+                %td
+                  %h4= project.name
+                  %span.text-muted= link_to project.git_repo, 'https://github.com/'+project.git_repo
+                %td
+                  .pull-request-link
+                    = project_pull_request_url(project, project.pull_request, format: :json)
+                  %div{:id => project.name.gsub(/ /, '-')}
+                %td= link_to 'Edit', edit_project_path(project)
+                %td= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' }
+      %p
+        = link_to 'Add a Project', new_project_path
