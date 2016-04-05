@@ -2,7 +2,7 @@ var PullRequestGraphic = function(project_name, pr_url) {
   this.pr_url = pr_url;
   this.getPullRequestInfo = function() {
     console.log("getting pull request info");
-    $.ajax({type: 'GET',
+    jQuery.ajax({type: 'GET',
             url: this.pr_url,
             timeout: 5000,
             success: this.showPullRequestInfo,
@@ -15,7 +15,7 @@ var PullRequestGraphic = function(project_name, pr_url) {
     console.log("showing pull request info");
     
     // Load the Visualization API and the corechart package.
-    google.charts.load('current', {'packages':['corechart']});
+    // google.charts.load('current', {'packages':['corechart']});
     
     // Set a callback to run when the Google Visualization API is loaded.
     google.charts.setOnLoadCallback(drawChart);
@@ -29,13 +29,13 @@ var PullRequestGraphic = function(project_name, pr_url) {
         var p_name = project_name.replace(/ /g, "-");
         
         // Create the data table.
-        var data = google.visualization.arrayToDataTable([
+        var pr_data = google.visualization.arrayToDataTable([
             ['Project', '2 or more', '1 Review', 'No Reviews', { role: 'annotation' } ],
             [p_name, jsonData.green, jsonData.yellow, jsonData.red, ''],
           ]);
         
         // Set chart options
-        var options = {
+        var pr_options = {
             width: 200,
             height: 200,
             legend: { position: 'none'},
@@ -48,8 +48,9 @@ var PullRequestGraphic = function(project_name, pr_url) {
         
         // Instantiate and draw our chart, passing in some options.
         var chart = new google.visualization.ColumnChart(document.getElementById(p_name));
-        chart.draw(data, options);
-    };
+        console.log(pr_data);
+        chart.draw(pr_data, pr_options);
+    }
     return(false);  // prevent default link action
   };
 };

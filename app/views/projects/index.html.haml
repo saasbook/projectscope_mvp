@@ -12,6 +12,7 @@
             %tr
               %th
               %th Pull Requests
+              %th Slack
               %th{:colspan => "2"}
         
           %tbody
@@ -24,6 +25,8 @@
                   .pull-request-link
                     = project_pull_request_url(project, project.pull_request, format: :json)
                   %div{:id => project.name.gsub(/ /, '-')}
+                %td
+                  %div{:id => 'heatmapContainer'}
                 %td= link_to 'Edit', edit_project_path(project)
                 %td= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' }
       %p
