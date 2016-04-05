@@ -15,6 +15,6 @@ module PullRequestsHelper
   end
   
   def pr_color_block(data, color)
-    "<div style = 'width: 25px; height: #{(data[color]*100).round}px; background: #{color}; margin: auto;'></div>"
+    "<div id = 'pr' style = 'height: #{(data[color]*100).round}px; background: #{color};'></div>"
   end
 end

@@ -1,5 +1,4 @@
 Feature: slack
-
   As an instructor
   So that I can gauge a group's communication
   I want to see a "heat measure" (a color coded scalar) of the distribution of
