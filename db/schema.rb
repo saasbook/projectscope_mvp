@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160311171949) do
+ActiveRecord::Schema.define(version: 20160405055753) do
 
   create_table "projects", force: :cascade do |t|
     t.string   "name"
@@ -30,6 +30,16 @@ ActiveRecord::Schema.define(version: 20160311171949) do
   end
 
   add_index "pull_requests", ["project_id"], name: "index_pull_requests_on_project_id"
+
+  create_table "slack_data_points", force: :cascade do |t|
+    t.string   "user"
+    t.integer  "messages"
+    t.integer  "slack_metric_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "slack_data_points", ["slack_metric_id"], name: "index_slack_data_points_on_slack_metric_id"
 
   create_table "slack_metrics", force: :cascade do |t|
     t.integer  "project_id"

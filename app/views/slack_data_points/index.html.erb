@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Slack Data Points</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Messages</th>
+      <th>Slack metric</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @slack_data_points.each do |slack_data_point| %>
+      <tr>
+        <td><%= slack_data_point.user %></td>
+        <td><%= slack_data_point.messages %></td>
+        <td><%= slack_data_point.slack_metric_id %></td>
+        <td><%= link_to 'Show', slack_data_point %></td>
+        <td><%= link_to 'Edit', edit_slack_data_point_path(slack_data_point) %></td>
+        <td><%= link_to 'Destroy', slack_data_point, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Slack data point', new_slack_data_point_path %>
