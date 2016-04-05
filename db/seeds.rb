@@ -7,5 +7,3 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 moonlighter = Project.create(name: 'ER Moonlighter Scheduling', git_repo: 'stevenbuccini/er-moonlighter-scheduler')
-moonlighter.create_pull_request
-moonlighter.create_slack_metric

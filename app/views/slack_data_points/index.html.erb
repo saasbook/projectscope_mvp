@@ -7,7 +7,7 @@
     <tr>
       <th>User</th>
       <th>Messages</th>
-      <th>Slack metric</th>
+      <th>Project</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -17,7 +17,7 @@
       <tr>
         <td><%= slack_data_point.user %></td>
         <td><%= slack_data_point.messages %></td>
-        <td><%= slack_data_point.slack_metric_id %></td>
+        <td><%= slack_data_point.project_id %></td>
         <td><%= link_to 'Show', slack_data_point %></td>
         <td><%= link_to 'Edit', edit_slack_data_point_path(slack_data_point) %></td>
         <td><%= link_to 'Destroy', slack_data_point, method: :delete, data: { confirm: 'Are you sure?' } %></td>

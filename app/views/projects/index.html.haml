@@ -22,11 +22,13 @@
                   %h4= project.name
                   %span.text-muted= link_to project.git_repo, 'https://github.com/'+project.git_repo
                 %td
-                  .pull-request-link
+                  #pull-request-link.hidden-link
                     = project_pull_request_url(project, project.pull_request, format: :json)
-                  %div{:id => project.name.gsub(/ /, '-')}
+                  %div{:id => project.name.gsub(/ /, '-') + '-pull-request'}
                 %td
-                  %div{:id => 'heatmapContainer'}
+                  #slack-link.hidden-link
+                    = project_slack_data_points_url(project, format: :json)
+                  %div{:id => project.name.gsub(/ /, '-') + '-slack'}
                 %td= link_to 'Edit', edit_project_path(project)
                 %td= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' }
       %p

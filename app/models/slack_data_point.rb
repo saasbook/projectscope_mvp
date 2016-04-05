@@ -1,3 +1,3 @@
 class SlackDataPoint < ActiveRecord::Base
-  belongs_to :slack_metric
+  belongs_to :project
 end

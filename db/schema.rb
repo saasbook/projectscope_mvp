@@ -34,19 +34,11 @@ ActiveRecord::Schema.define(version: 20160405055753) do
   create_table "slack_data_points", force: :cascade do |t|
     t.string   "user"
     t.integer  "messages"
-    t.integer  "slack_metric_id"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-  end
-
-  add_index "slack_data_points", ["slack_metric_id"], name: "index_slack_data_points_on_slack_metric_id"
-
-  create_table "slack_metrics", force: :cascade do |t|
     t.integer  "project_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_index "slack_metrics", ["project_id"], name: "index_slack_metrics_on_project_id"
+  add_index "slack_data_points", ["project_id"], name: "index_slack_data_points_on_project_id"
 
 end

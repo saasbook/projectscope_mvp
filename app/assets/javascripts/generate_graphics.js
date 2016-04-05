@@ -1,11 +1,10 @@
-console.log("generating graphics");
-var pullRequestGraphics = function () {
-    console.log("iterating through projects...");
+var generateGraphics = function () {
     jQuery("tbody tr").each(function() {
-       var pr_graphic = new PullRequestGraphic(jQuery(this).find("h4").text(), jQuery(this).find("div.pull-request-link").text());
-       console.log(pr_graphic.pr_url);
-       pr_graphic.getPullRequestInfo();
+       var projectName = jQuery(this).find("h4").text();
+       var pullRequestGraphic = new PullRequestGraphic(projectName, jQuery(this).find("#pull-request-link").text());
+       pullRequestGraphic.getPullRequestData();
+       var slackGraphic = new SlackGraphic(projectName, jQuery(this).find("#slack-link").text());
+       slackGraphic.getSlackData();
     });
 };
-console.log("pull request graphics");
-jQuery(pullRequestGraphics);
+jQuery(generateGraphics);

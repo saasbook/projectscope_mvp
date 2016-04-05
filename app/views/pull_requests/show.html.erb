@@ -15,5 +15,10 @@
   <%= @pull_request.green %>
 </p>
 
+<p>
+  <strong>Project:</strong>
+  <%= @pull_request.project_id %>
+</p>
+
 <%= link_to 'Edit', edit_pull_request_path(@pull_request) %> |
 <%= link_to 'Back', pull_requests_path %>

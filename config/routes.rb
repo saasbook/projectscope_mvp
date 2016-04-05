@@ -1,9 +1,7 @@
 Rails.application.routes.draw do
   resources :projects do
     resources :pull_requests
-    resources :slack_metrics do
-      resources :slack_data_points, shallow: true
-    end
+    resources :slack_data_points
   end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -8,6 +8,7 @@
       <th>Red</th>
       <th>Yellow</th>
       <th>Green</th>
+      <th>Project</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -18,6 +19,7 @@
         <td><%= pull_request.red %></td>
         <td><%= pull_request.yellow %></td>
         <td><%= pull_request.green %></td>
+        <td><%= pull_request.project_id %></td>
         <td><%= link_to 'Show', pull_request %></td>
         <td><%= link_to 'Edit', edit_pull_request_path(pull_request) %></td>
         <td><%= link_to 'Destroy', pull_request, method: :delete, data: { confirm: 'Are you sure?' } %></td>
