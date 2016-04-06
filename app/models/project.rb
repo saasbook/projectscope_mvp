@@ -5,7 +5,12 @@ class Project < ActiveRecord::Base
   def get_pull_request_data
     begin
       client = Octokit::Client.new(:access_token => ENV['GITHUB_KEY'])
-      repo = self.git_repo
+      if self.git_repo =~ /(.+)(\/|\.git)$/
+        repo = $1
+      else
+        repo = self.git_repo
+      end
+      
       client.auto_paginate = true
       
       comments = client.pull_requests_comments repo
@@ -39,7 +44,7 @@ class Project < ActiveRecord::Base
       
       pr_hash = {red: red, yellow: yellow, green: green}
     rescue Octokit::InvalidRepository, Octokit::NotFound
-      pr_hash = {red:0, yellow:0, green:0}
+      pr_hash = {red: -1, yellow: -1, green: -1}
     ensure
       if self.pull_request
         self.pull_request.update_attributes(pr_hash)

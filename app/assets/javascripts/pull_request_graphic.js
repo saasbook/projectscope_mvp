@@ -11,6 +11,15 @@ var PullRequestGraphic = function(projectID, pullRequestURL) {
     return(false);
   };
   this.showPullRequestGraphic = function(jsonData, requestStatus, xhrObject) {
+    if (jsonData.green == -1) {
+        jQuery('#'+projectID+'-pull-request').html('<p class="bg-danger">Invalid git repo</p>');
+        return(false);
+    }
+    
+    if (jsonData.green == 0 && jsonData.yellow == 0 && jsonData.red == 0) {
+        jQuery('#'+projectID+'-pull-request').html('<p class="bg-danger">No pull requests</p>');
+        return(false);
+    }
     // Set a callback to run when the Google Visualization API is loaded.
     google.charts.setOnLoadCallback(drawPullRequestGraphic);
     
@@ -21,7 +30,7 @@ var PullRequestGraphic = function(projectID, pullRequestURL) {
         // Create the data table.
         var pullRequestData = google.visualization.arrayToDataTable([
             ['Project', '2 or more', '1 Review', 'No Reviews', { role: 'annotation' } ],
-            [projectID, jsonData.green, jsonData.yellow, jsonData.red, ''],
+            ['', jsonData.green, jsonData.yellow, jsonData.red, ''],
           ]);
         
         // Set chart options
