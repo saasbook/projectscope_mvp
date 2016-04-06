@@ -1,28 +1,25 @@
 class PullRequestsController < ApplicationController
   before_action :set_pull_request, only: [:show, :edit, :update, :destroy]
 
-  # GET /pull_requests
-  # GET /pull_requests.json
+  # GET /projects/:project_id/pull_requests(.:format)
   def index
-    @pull_requests = PullRequest.all
+    @pull_requests = PullRequest.find_by params[:project_id]
   end
 
-  # GET /pull_requests/1
-  # GET /pull_requests/1.json
+  # GET /projects/:project_id/pull_requests/:id(.:format)
   def show
   end
 
-  # GET /pull_requests/new
+  # GET /projects/:project_id/pull_requests/new(.:format)
   def new
     @pull_request = PullRequest.new
   end
 
-  # GET /pull_requests/1/edit
+  # GET /projects/:project_id/pull_requests/:id/edit(.:format)
   def edit
   end
 
-  # POST /pull_requests
-  # POST /pull_requests.json
+  # POST /projects/:project_id/pull_requests(.:format)
   def create
     @pull_request = PullRequest.new(pull_request_params)
 
@@ -37,8 +34,7 @@ class PullRequestsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /pull_requests/1
-  # PATCH/PUT /pull_requests/1.json
+  # PATCH/PUT /projects/:project_id/pull_requests/:id(.:format)
   def update
     respond_to do |format|
       if @pull_request.update(pull_request_params)
@@ -51,8 +47,7 @@ class PullRequestsController < ApplicationController
     end
   end
 
-  # DELETE /pull_requests/1
-  # DELETE /pull_requests/1.json
+  # DELETE /projects/:project_id/pull_requests/:id(.:format)
   def destroy
     @pull_request.destroy
     respond_to do |format|
@@ -69,6 +64,6 @@ class PullRequestsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def pull_request_params
-      params.require(:pull_request).permit(:red, :yellow, :green)
+      params.require(:pull_request).permit(:red, :yellow, :green, :project_id)
     end
 end

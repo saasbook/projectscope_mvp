@@ -1,4 +1,4 @@
-var SlackGraphic = function(projectName, slackURL) {
+var SlackGraphic = function(projectID, slackURL) {
   this.slackURL = slackURL;
   this.getSlackData = function() {
     jQuery.ajax({type: 'GET',
@@ -18,8 +18,6 @@ var SlackGraphic = function(projectName, slackURL) {
     // instantiates the pie chart, passes in the data and
     // draws it.
     function drawSlackGraphic() {
-        projectName = projectName.replace(/ /g, "-");
-        
         var slackData = new google.visualization.DataTable();
         var numUsers = jsonData.length;
         var numColumns = 3;
@@ -50,7 +48,7 @@ var SlackGraphic = function(projectName, slackURL) {
         };
         
         // Instantiate and draw our chart, passing in some options.
-        var slackGraphic = new org.systemsbiology.visualization.BioHeatMap(document.getElementById(projectName+'-slack'));
+        var slackGraphic = new org.systemsbiology.visualization.BioHeatMap(document.getElementById(projectID+'-slack'));
         slackGraphic.draw(slackData, slackOptions);
     }
     return(false);  // prevent default link action

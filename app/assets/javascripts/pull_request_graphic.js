@@ -1,4 +1,4 @@
-var PullRequestGraphic = function(projectName, pullRequestURL) {
+var PullRequestGraphic = function(projectID, pullRequestURL) {
   this.pullRequestURL = pullRequestURL;
   this.getPullRequestData = function() {
     jQuery.ajax({type: 'GET',
@@ -18,12 +18,10 @@ var PullRequestGraphic = function(projectName, pullRequestURL) {
     // instantiates the pie chart, passes in the data and
     // draws it.
     function drawPullRequestGraphic() {
-        projectName = projectName.replace(/ /g, "-");
-        
         // Create the data table.
         var pullRequestData = google.visualization.arrayToDataTable([
             ['Project', '2 or more', '1 Review', 'No Reviews', { role: 'annotation' } ],
-            [projectName, jsonData.green, jsonData.yellow, jsonData.red, ''],
+            [projectID, jsonData.green, jsonData.yellow, jsonData.red, ''],
           ]);
         
         // Set chart options
@@ -39,7 +37,7 @@ var PullRequestGraphic = function(projectName, pullRequestURL) {
           };
         
         // Instantiate and draw our chart, passing in some options.
-        var pullRequestGraphic = new google.visualization.ColumnChart(document.getElementById(projectName+'-pull-request'));
+        var pullRequestGraphic = new google.visualization.ColumnChart(document.getElementById(projectID+'-pull-request'));
         console.log(pullRequestData);
         pullRequestGraphic.draw(pullRequestData, pullRequestOptions);
     }

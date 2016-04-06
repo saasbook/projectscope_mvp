@@ -20,15 +20,14 @@
               %tr
                 %td
                   %h4= project.name
+                  .projectID.hidden= project.id
                   %span.text-muted= link_to project.git_repo, 'https://github.com/'+project.git_repo
                 %td
-                  #pull-request-link.hidden-link
-                    = project_pull_request_url(project, project.pull_request, format: :json)
-                  %div{:id => project.name.gsub(/ /, '-') + '-pull-request'}
+                  %div{:id => project.id.to_s + '-pull-request-link', :class => 'hidden'}= project_pull_request_url(project, project.pull_request, format: :json)
+                  %div{:id => project.id.to_s + '-pull-request'}
                 %td
-                  #slack-link.hidden-link
-                    = project_slack_data_points_url(project, format: :json)
-                  %div{:id => project.name.gsub(/ /, '-') + '-slack'}
+                  %div{:id => project.id.to_s + '-slack-link', :class => 'hidden'}= project_slack_data_points_url(project, format: :json)
+                  %div{:id => project.id.to_s + '-slack'}
                 %td= link_to 'Edit', edit_project_path(project)
                 %td= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' }
       %p
