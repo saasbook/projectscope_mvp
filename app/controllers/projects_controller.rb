@@ -5,6 +5,14 @@ class ProjectsController < ApplicationController
   # GET /projects.json
   def index
     @projects = Project.all
+    @projects.each do |project|
+      unless project.pull_request
+        project.get_pull_request_data
+      end
+      unless project.slack_data_points.length > 0
+        project.get_slack_data
+      end
+    end
   end
 
   # GET /projects/1

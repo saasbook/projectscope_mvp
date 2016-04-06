@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @slack_data_point.user %>
+</p>
+
+<p>
+  <strong>Messages:</strong>
+  <%= @slack_data_point.messages %>
+</p>
+
+<p>
+  <strong>Project:</strong>
+  <%= @slack_data_point.project_id %>
+</p>
+
+<%= link_to 'Edit', edit_slack_data_point_path(@slack_data_point) %> |
+<%= link_to 'Back', slack_data_points_path %>
