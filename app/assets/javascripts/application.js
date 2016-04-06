@@ -13,5 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require noconflict
+//= require bioheatmap
 //= require turbolinks
 //= require_tree .

@@ -40,7 +40,6 @@ var PullRequestGraphic = function(projectName, pullRequestURL) {
         
         // Instantiate and draw our chart, passing in some options.
         var pullRequestGraphic = new google.visualization.ColumnChart(document.getElementById(projectName+'-pull-request'));
-        console.log(pullRequestData);
         pullRequestGraphic.draw(pullRequestData, pullRequestOptions);
     }
     return(false);  // prevent default link action
