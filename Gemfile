@@ -49,6 +49,8 @@ gem 'figaro'
 gem 'octokit'
 # For Slack
 gem 'slack-ruby-client'
+# For Pivotal Tracker
+gem 'tracker_api', '~> 0.2.0'
 
 ################
 
