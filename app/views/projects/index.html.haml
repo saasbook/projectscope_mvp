@@ -13,7 +13,8 @@
               %th
               %th Pull Requests
               %th Slack
-              %th{:colspan => "2"}
+              -#
+                %th{:colspan => "2"}
         
           %tbody
             - @projects.each do |project|
@@ -28,7 +29,9 @@
                 %td
                   %div{:id => project.id.to_s + '-slack-link', :class => 'hidden'}= project_slack_data_points_url(project, format: :json)
                   %div{:id => project.id.to_s + '-slack'}
-                %td= link_to 'Edit', edit_project_path(project)
-                %td= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' }
-      %p
-        = link_to 'Add a Project', new_project_path
+                -#
+                  %td= link_to 'Edit', edit_project_path(project)
+                  %td= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' }
+      -#
+        %p
+          = link_to 'Add a Project', new_project_path
