@@ -46,7 +46,6 @@ class Project < ActiveRecord::Base
   def get_slack_data
     client = Slack::Web::Client.new(token: ENV['SLACK_API_TOKEN'])
     users = client.users_list.members
-    user_contributions = {}
     users.each do |user|
       unless user.name == "slackbot"
         num_messages = client.search_all(query: "from:@#{user.name}").messages.total

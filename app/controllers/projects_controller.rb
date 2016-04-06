@@ -6,6 +6,8 @@ class ProjectsController < ApplicationController
   def index
     @projects = Project.all
     @projects.each do |project|
+      # FIXME
+      # Need to implement logic for fetching updates periodically
       unless project.pull_request
         project.get_pull_request_data
       end
