@@ -5,6 +5,8 @@
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     %script{:type => 'text/javascript', :src => 'https://www.gstatic.com/charts/loader.js'}
     %script{:type => 'text/javascript', :src => 'https://www.google.com/jsapi'}
+    %script
+      google.load("prototype", "1.6");
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
     /[if lt IE 9]
