@@ -8,7 +8,8 @@ addons:
   code_climate:
     repo_token: 0d4ba60fcc68d8d8b5ac52795cb3c026d6d4b73de0fc433b8c03c0a17ff18596
 before_script:
-- bundle exec rake db:migrate RAILS_ENV=test
+- RAILS_ENV=test bundle exec rake db:migrate
+- bundle exec rspec spec/
 env:
   global:
   - secure: XXfmHpKp/bRWjdACmSCrzmxhFHvtXc7Is5vwrCVNnDGFnzAMSDsedP98zH9m2i2nEqxrcY3/oLXUkFlpxDl0wFo3di3qhPtKTf/h67YatO5MfX46SSFWH7af/+I1HhIZi7OKMWV/TSvpWZZAhaSBJYLN2agTyyqSGeu/vhOZankiltjT6pOrfIzGOSORm6uR8pvU4NSw51IDj+SiPBGvmoFZYYEta2d/8RE/bv71emDQalw0U5uUVONP1P/a7vK+cBuMQBDeyF9FgULjHX6VC8LnW+Ipjo0BNr2A/9ZnPmM2+te8Z+pB5iK55YMmO3Qa60gKbIq9MSYw/gWKkNYVrFcz9iMkooVRsUckBSxAw5kc/hcN5JU1hkPIEGD/hIQiifrQMZ7gxElzaXL/7er5L5ODoJ1AqTgZPYa6UpD4g0Fgvdz0UBVKlwJj+ibV/9E+LMCy+g+c51/NORebufubQhhSPvoACT9Yvv0Q6NCO8O/hUPivvXsNmPzPmCr9Sp9dPNa73lmd/CRe7dBFmyaMmcGTIXvdKGTnjTznmrszQnDijkp4Qx7/FaPGHdDpThrxhNcKatRsrs5S1T8KVZv8s+Jd+1H8icMdZFKjxt8ZpaE7MW0kgq9vUZHOT9asJLXrr8xjhwjD9pmHIsY4jnKtFcHuNkDdloKObmjVRsLfHm4=
