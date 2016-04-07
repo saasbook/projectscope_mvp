@@ -1,4 +1,4 @@
-var PullRequestGraphic = function(projectName, pullRequestURL) {
+var PullRequestGraphic = function(projectID, pullRequestURL) {
   this.pullRequestURL = pullRequestURL;
   this.getPullRequestData = function() {
     jQuery.ajax({type: 'GET',
@@ -11,6 +11,15 @@ var PullRequestGraphic = function(projectName, pullRequestURL) {
     return(false);
   };
   this.showPullRequestGraphic = function(jsonData, requestStatus, xhrObject) {
+    if (jsonData.green == -1) {
+        jQuery('#'+projectID+'-pull-request').html('<p class="bg-danger">Invalid git repo</p>');
+        return(false);
+    }
+    
+    if (jsonData.green == 0 && jsonData.yellow == 0 && jsonData.red == 0) {
+        jQuery('#'+projectID+'-pull-request').html('<p class="bg-danger">No pull requests</p>');
+        return(false);
+    }
     // Set a callback to run when the Google Visualization API is loaded.
     google.charts.setOnLoadCallback(drawPullRequestGraphic);
     
@@ -18,12 +27,10 @@ var PullRequestGraphic = function(projectName, pullRequestURL) {
     // instantiates the pie chart, passes in the data and
     // draws it.
     function drawPullRequestGraphic() {
-        projectName = projectName.replace(/ /g, "-");
-        
         // Create the data table.
         var pullRequestData = google.visualization.arrayToDataTable([
             ['Project', '2 or more', '1 Review', 'No Reviews', { role: 'annotation' } ],
-            [projectName, jsonData.green, jsonData.yellow, jsonData.red, ''],
+            ['', jsonData.green, jsonData.yellow, jsonData.red, ''],
           ]);
         
         // Set chart options
@@ -39,7 +46,8 @@ var PullRequestGraphic = function(projectName, pullRequestURL) {
           };
         
         // Instantiate and draw our chart, passing in some options.
-        var pullRequestGraphic = new google.visualization.ColumnChart(document.getElementById(projectName+'-pull-request'));
+        var pullRequestGraphic = new google.visualization.ColumnChart(document.getElementById(projectID+'-pull-request'));
+        console.log(pullRequestData);
         pullRequestGraphic.draw(pullRequestData, pullRequestOptions);
     }
     return(false);  // prevent default link action

@@ -1,28 +1,25 @@
 class SlackDataPointsController < ApplicationController
   before_action :set_slack_data_point, only: [:show, :edit, :update, :destroy]
 
-  # GET /slack_data_points
-  # GET /slack_data_points.json
+  # GET /projects/:project_id/slack_data_points(.:format)
   def index
-    @slack_data_points = SlackDataPoint.all
+    @slack_data_points = SlackDataPoint.where(project_id: params[:project_id])
   end
 
-  # GET /slack_data_points/1
-  # GET /slack_data_points/1.json
+  # GET /projects/:project_id/slack_data_points/:id(.:format)
   def show
   end
 
-  # GET /slack_data_points/new
+  # GET /projects/:project_id/slack_data_points/new(.:format)
   def new
     @slack_data_point = SlackDataPoint.new
   end
 
-  # GET /slack_data_points/1/edit
+  # GET /projects/:project_id/slack_data_points/:id/edit(.:format)
   def edit
   end
 
-  # POST /slack_data_points
-  # POST /slack_data_points.json
+  # POST /projects/:project_id/slack_data_points(.:format)
   def create
     @slack_data_point = SlackDataPoint.new(slack_data_point_params)
 
@@ -37,8 +34,7 @@ class SlackDataPointsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /slack_data_points/1
-  # PATCH/PUT /slack_data_points/1.json
+  # PATCH/PUT /projects/:project_id/slack_data_points/:id(.:format)
   def update
     respond_to do |format|
       if @slack_data_point.update(slack_data_point_params)
@@ -51,8 +47,7 @@ class SlackDataPointsController < ApplicationController
     end
   end
 
-  # DELETE /slack_data_points/1
-  # DELETE /slack_data_points/1.json
+  # DELETE /projects/:project_id/slack_data_points/:id(.:format)
   def destroy
     @slack_data_point.destroy
     respond_to do |format|
@@ -69,6 +64,6 @@ class SlackDataPointsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def slack_data_point_params
-      params.require(:slack_data_point).permit(:user, :messages, :slack_metric_id)
+      params.require(:slack_data_point).permit(:user, :messages, :project_id)
     end
 end

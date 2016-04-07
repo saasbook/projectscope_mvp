@@ -1,9 +1,9 @@
 var generateGraphics = function () {
     jQuery("tbody tr").each(function() {
-       var projectName = jQuery(this).find("h4").text();
-       var pullRequestGraphic = new PullRequestGraphic(projectName, jQuery(this).find("#pull-request-link").text());
+       var projectID = jQuery(this).find(".projectID").text();
+       var pullRequestGraphic = new PullRequestGraphic(projectID, jQuery(this).find("#"+projectID+"-pull-request-link").text());
        pullRequestGraphic.getPullRequestData();
-       var slackGraphic = new SlackGraphic(projectName, jQuery(this).find("#slack-link").text());
+       var slackGraphic = new SlackGraphic(projectID, jQuery(this).find("#"+projectID+"-slack-link").text());
        slackGraphic.getSlackData();
     });
 };
