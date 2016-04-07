@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Project do
     before :each do
-        @project = Project.create(git_repo: 'stevenbuccini/er-moonlighter-scheduler')
+        @project = Project.create(name: 'ER Moonlight Scheduler')
     end
     describe 'getting pull request data' do
         it 'should initially have no pull request' do
