@@ -1,5 +1,6 @@
 class PullRequest < ActiveRecord::Base
   belongs_to :project
+  validate :repo_name_is_appropriate
   
   def get_data
     begin
@@ -41,6 +42,10 @@ class PullRequest < ActiveRecord::Base
     ensure
       self.update_attributes(pr_hash)
     end
+  end
+  
+  def repo_name_is_appropriate
+    
   end
   
 end

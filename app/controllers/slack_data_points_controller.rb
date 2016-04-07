@@ -3,8 +3,7 @@ class SlackDataPointsController < ApplicationController
 
   # GET /projects/:project_id/slack_data_points(.:format)
   def index
-    
-    @slack_data_points = SlackMetric.find_by(params[:project_id]).slack_data_points
+    @slack_data_points = SlackMetric.find_by(project_id: params[:project_id]).slack_data_points
   end
 
   # GET /projects/:project_id/slack_data_points/:id(.:format)
