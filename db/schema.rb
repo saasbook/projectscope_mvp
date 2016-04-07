@@ -11,11 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160405055753) do
+ActiveRecord::Schema.define(version: 20160407022036) do
 
   create_table "projects", force: :cascade do |t|
     t.string   "name"
-    t.string   "git_repo"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -27,6 +26,7 @@ ActiveRecord::Schema.define(version: 20160405055753) do
     t.integer  "project_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "repo"
   end
 
   add_index "pull_requests", ["project_id"], name: "index_pull_requests_on_project_id"
