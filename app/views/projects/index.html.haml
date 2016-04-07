@@ -22,7 +22,7 @@
                 %td
                   %h4= project.name
                   .projectID.hidden= project.id
-                  %span.text-muted= link_to project.git_repo, 'https://github.com/'+project.git_repo
+                  %span.text-muted= link_to project.pull_request.repo, 'https://github.com/'+project.pull_request.repo
                   %div
                     %p
                       %a{:href => 'https://codeclimate.com/github/stevenbuccini/er-moonlighter-scheduler'}
