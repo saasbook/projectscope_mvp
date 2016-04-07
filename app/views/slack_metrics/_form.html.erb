@@ -1,0 +1,21 @@
+<%= form_for(@slack_metric) do |f| %>
+  <% if @slack_metric.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@slack_metric.errors.count, "error") %> prohibited this slack_metric from being saved:</h2>
+
+      <ul>
+      <% @slack_metric.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :slack_api_token %><br>
+    <%= f.text_field :slack_api_token %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

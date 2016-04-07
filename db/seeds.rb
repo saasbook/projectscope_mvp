@@ -6,9 +6,11 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-moonlighter = Project.create(name: 'ER Moonlighter Scheduling', git_repo: 'stevenbuccini/er-moonlighter-scheduler')
+moonlighter = Project.create(name: 'ER Moonlighter Scheduling')
+moonlighter.create_pull_request(repo: 'stevenbuccini/er-moonlighter-scheduler')
+moonlighter.create_slack_metric(slack_api_token: '')
 
-git_repos = [
+project_data = [
   ['Rate My Pup', 'eabartlett/ratemypup/'],
   ['Artist Submission Site', 'cal-sfai/submission-site'],
   ['Database and development site for City Dog Share', 'sfstanley/citydogshare'],
@@ -51,12 +53,14 @@ git_repos = [
   ['ER Core Staff Scheduler', 'charlespark94/ER-Core-Staff-Scheduler'],
 ]
 
-git_repos.each do |p|
-  proj = Project.create(name: p[0], git_repo: p[1])
+project_data.each do |p|
+  proj = Project.create(name: p[0])
+  proj.create_pull_request(repo: p[1])
+  proj.create_slack_metric(slack_api_token: '')
   num_slack_users = 5 + rand(2)
   rand_msg_counts = num_slack_users.times.map{ rand(200) }
   rand_msg_counts.each do |count|
     rand_name = (0...8).map { (65 + rand(26)).chr }.join
-    proj.slack_data_points.create(user: rand_name, messages: count)
+    proj.slack_metric.slack_data_points.create(user: rand_name, messages: count)
   end
 end
