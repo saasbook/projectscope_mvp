@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :slack_metrics
   resources :projects do
     resources :pull_requests
     resources :slack_data_points

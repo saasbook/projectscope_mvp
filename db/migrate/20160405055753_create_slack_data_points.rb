@@ -3,11 +3,11 @@ class CreateSlackDataPoints < ActiveRecord::Migration
     create_table :slack_data_points do |t|
       t.string :user
       t.integer :messages
-      t.integer :project_id
+      t.integer :slack_metric_id
 
       t.timestamps null: false
     end
     
-    add_index :slack_data_points, :project_id
+    add_index :slack_data_points, :slack_metric_id
   end
 end

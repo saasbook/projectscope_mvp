@@ -1,9 +1,9 @@
-class Project < ActiveRecord::Base
-  has_one :pull_request
-  has_one :slack_metric
-  has_many :slack_data_points, through: :slack_metric 
+class SlackMetric < ActiveRecord::Base
+  belongs_to :project
+  has_many :slack_data_points
   
-  def get_slack_data
+  def get_data
+    # WILL NEED TO CHANGE LOCATION OF API TOKEN ONCE EACH PROJECT HAS IT'S OWN
     client = Slack::Web::Client.new(token: ENV['SLACK_API_TOKEN'])
     users = client.users_list.members
     users.each do |user|
@@ -18,5 +18,5 @@ class Project < ActiveRecord::Base
       end
     end
   end
-
+  
 end

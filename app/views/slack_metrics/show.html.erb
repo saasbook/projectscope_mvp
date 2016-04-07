@@ -1,0 +1,9 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Slack api token:</strong>
+  <%= @slack_metric.slack_api_token %>
+</p>
+
+<%= link_to 'Edit', edit_slack_metric_path(@slack_metric) %> |
+<%= link_to 'Back', slack_metrics_path %>
