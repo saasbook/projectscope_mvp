@@ -47,6 +47,8 @@ class PullRequest < ActiveRecord::Base
   def repo_name_is_appropriate
     if self.repo =~ /(.+)(\/|\.git)$/
       self.repo = $1
+    else
+      errors.add(:repo => "Invalid repo name format")
     end
   end
   
