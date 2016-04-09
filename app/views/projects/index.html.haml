@@ -27,6 +27,10 @@
                     %p
                       %a{:href => 'https://codeclimate.com/github/' + project.pull_request.repo}
                         %img{:src => 'https://codeclimate.com/github/' + project.pull_request.repo + '/badges/gpa.svg'}
+                  %div
+                    %p
+                      %a{:href => 'https://codeclimate.com/github/' + project.pull_request.repo + '/coverage'}
+                        %img{:src => 'https://codeclimate.com/github/' + project.pull_request.repo + '/badges/coverage.svg'}
                 %td
                   %div{:id => project.id.to_s + '-pull-request-link', :class => 'hidden'}= project_pull_request_url(project, project.pull_request, format: :json)
                   %div{:id => project.id.to_s + '-pull-request'}
