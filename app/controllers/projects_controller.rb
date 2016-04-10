@@ -11,7 +11,7 @@ class ProjectsController < ApplicationController
       if project.pull_request.red == nil
         project.pull_request.get_data
       end
-      if project.slack_data_points.length == 0
+      if project.slack_metric and project.slack_data_points.length == 0
         project.slack_metric.get_data
       end
     end

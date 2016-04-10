@@ -5,7 +5,8 @@ var SlackGraphic = function(projectID, slackURL) {
             url: this.slackURL,
             timeout: 5000,
             success: this.showSlackGraphic,
-            error: function(xhrObj, textStatus, exception) { alert('Error!'); }
+            error: function(xhrObj, textStatus, exception) { alert('Slack Graphic Error! '
+                                                                    + textStatus + ' ' + exception); }
             // 'success' and 'error' functions will be passed 3 args
            });
     return(false);

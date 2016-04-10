@@ -5,7 +5,8 @@ var PullRequestGraphic = function(projectID, pullRequestURL) {
             url: this.pullRequestURL,
             timeout: 5000,
             success: this.showPullRequestGraphic,
-            error: function(xhrObj, textStatus, exception) { alert('Error!'); }
+            error: function(xhrObj, textStatus, exception) { alert('Pull Request Graphic Error! '
+                                                                    + textStatus + ' ' + exception); }
             // 'success' and 'error' functions will be passed 3 args
            });
     return(false);
