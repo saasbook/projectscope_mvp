@@ -40,7 +40,7 @@ var PullRequestGraphic = function(projectID, pullRequestURL) {
             height: 100,
             legend: { position: 'none'},
             bar: { groupWidth: '100%' },
-            isStacked: true,
+            isStacked: 'percent',
             colors: ['green', 'yellow', 'red'],
             hAxis: {textPosition: 'none'},
             vAxis: {textPosition: 'none'}
