@@ -26,3 +26,16 @@ Then(/^I should see the total number of pull requests for "([^"]*)"$/) do |proje
   project_id = Project.find_by(name: project_title).id
   expect(page).to have_selector('#project-' + project_id.to_s + '> td:nth-child(2) > div:nth-child(3)')
 end
+
+Given(/^the following projects exist:$/) do |table|
+  # table is a Cucumber::Core::Ast::DataTable
+  pending # Write code here that turns the phrase above into concrete actions
+end
+
+Given(/^I am the home page$/) do
+  pending # Write code here that turns the phrase above into concrete actions
+end
+
+Then(/^the projects should be sorted by pull requests$/) do
+  pending # Write code here that turns the phrase above into concrete actions
+end
