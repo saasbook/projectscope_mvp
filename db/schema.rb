@@ -15,6 +15,8 @@ ActiveRecord::Schema.define(version: 20160412001917) do
 
   create_table "code_climates", force: :cascade do |t|
     t.float    "score"
+    t.float    "gpa"
+    t.integer  "coverage"
     t.string   "url"
     t.integer  "project_id"
     t.datetime "created_at", null: false

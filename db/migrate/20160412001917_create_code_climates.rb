@@ -2,6 +2,8 @@ class CreateCodeClimates < ActiveRecord::Migration
   def change
     create_table :code_climates do |t|
       t.float :score
+      t.float :gpa
+      t.integer :coverage
       t.string :url
       t.integer :project_id
 
