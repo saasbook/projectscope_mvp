@@ -12,19 +12,4 @@ describe ProjectsHelper do
         end
     end
     
-    describe '#url_exist?' do
-        before :each do
-            @url = helper.github_url(@repo_name) 
-        end
-        it 'should return true for a valid url' do
-            expect(helper.url_exist? @url).to eq(true)
-        end
-    
-        it 'should return false for a invalid url' do
-            bad_url = @url + "asdf"
-            expect(helper.url_exist? bad_url).to eq(false)
-        end
-    end
-    
-    
 end
