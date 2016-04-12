@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160412001917) do
+ActiveRecord::Schema.define(version: 20160412002522) do
 
   create_table "code_climates", force: :cascade do |t|
     t.float    "score"
@@ -22,6 +22,16 @@ ActiveRecord::Schema.define(version: 20160412001917) do
   end
 
   add_index "code_climates", ["project_id"], name: "index_code_climates_on_project_id"
+
+  create_table "coverages", force: :cascade do |t|
+    t.float    "score"
+    t.string   "url"
+    t.integer  "project_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "coverages", ["project_id"], name: "index_coverages_on_project_id"
 
   create_table "projects", force: :cascade do |t|
     t.string   "name"
