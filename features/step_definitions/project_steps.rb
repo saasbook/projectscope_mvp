@@ -21,3 +21,7 @@ Then(/^I should see the "([^"]*)" (.*) graphic$/) do |project_name, metric|
   project_id = Project.find_by(name: project_name).id
   expect(page).to have_selector('#'+ project_id.to_s + '-' + metric.gsub(' ', '-'))
 end
+
+Then(/^I should see the total number of pull requests for "([^"]*)"$/) do |project_title|
+  project_id = Project.
+end
