@@ -30,8 +30,8 @@ var PullRequestGraphic = function(projectID, pullRequestURL) {
     function drawPullRequestGraphic() {
         // Create the data table.
         var pullRequestData = google.visualization.arrayToDataTable([
-            ['Project', '2 or more', '1 Review', 'No Reviews', { role: 'annotation' } ],
-            ['', jsonData.green, jsonData.yellow, jsonData.red, ''],
+            ['Project', 'No Reviews', '1 Review', '2 or more', { role: 'annotation' } ],
+            ['', jsonData.red, jsonData.yellow, jsonData.green, ''],
           ]);
         
         // Set chart options
@@ -41,13 +41,13 @@ var PullRequestGraphic = function(projectID, pullRequestURL) {
             legend: { position: 'none'},
             bar: { groupWidth: '100%' },
             isStacked: 'percent',
-            colors: ['green', 'yellow', 'red'],
+            colors: ['red', 'yellow', 'green'],
             hAxis: {textPosition: 'none'},
             vAxis: {textPosition: 'none'}
           };
         
         // Instantiate and draw our chart, passing in some options.
-        var pullRequestGraphic = new google.visualization.ColumnChart(document.getElementById(projectID+'-pull-request'));
+        var pullRequestGraphic = new google.visualization.BarChart(document.getElementById(projectID+'-pull-request'));
         console.log(pullRequestData);
         pullRequestGraphic.draw(pullRequestData, pullRequestOptions);
     }
