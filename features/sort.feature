@@ -15,5 +15,5 @@ Scenario: sort by pull requests
   | CalTeach            | joshlam/calteach      |
 
   And I am the home page
-  When I follow "Pull"
+  When I follow "Pull Requests"
   Then the projects should be sorted by pull requests
