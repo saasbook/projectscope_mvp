@@ -1,6 +1,6 @@
-class CreateCodeClimates < ActiveRecord::Migration
+class CreateCodeClimateMetrics < ActiveRecord::Migration
   def change
-    create_table :code_climates do |t|
+    create_table :code_climate_metrics do |t|
       t.float :score
       t.float :gpa
       t.integer :coverage
@@ -10,6 +10,6 @@ class CreateCodeClimates < ActiveRecord::Migration
       t.timestamps null: false
     end
     
-    add_index :code_climates, :project_id
+    add_index :code_climate_metrics, :project_id
   end
 end

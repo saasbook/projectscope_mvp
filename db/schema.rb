@@ -13,7 +13,7 @@
 
 ActiveRecord::Schema.define(version: 20160412001917) do
 
-  create_table "code_climates", force: :cascade do |t|
+  create_table "code_climate_metrics", force: :cascade do |t|
     t.float    "score"
     t.float    "gpa"
     t.integer  "coverage"
@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 20160412001917) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "code_climates", ["project_id"], name: "index_code_climates_on_project_id"
+  add_index "code_climate_metrics", ["project_id"], name: "index_code_climate_metrics_on_project_id"
 
   create_table "projects", force: :cascade do |t|
     t.string   "name"
