@@ -45,9 +45,8 @@ class PullRequest < ActiveRecord::Base
   end
   
   def repo_name_is_appropriate
-    if self.repo =~ /(.+)(\/|\.git)$/
-      self.repo = $1
-    end
+    self.repo.chomp!('/')
+    self.repo.chomp!('.git')
   end
   
 end

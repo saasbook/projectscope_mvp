@@ -14,6 +14,6 @@ Scenario: sort by pull requests
   | Kuansim - "To Care" | g0v/kuansim-rails     |
   | CalTeach            | joshlam/calteach      |
 
-  And I am the home page
+  And I am on the home page
   When I follow "Pull Requests"
   Then the projects should be sorted by pull requests
