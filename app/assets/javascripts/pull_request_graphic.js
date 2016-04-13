@@ -37,7 +37,7 @@ var PullRequestGraphic = function(projectID, pullRequestURL) {
         // Set chart options
         var pullRequestOptions = {
             width: 100,
-            height: 100,
+            height: 20,
             legend: { position: 'none'},
             bar: { groupWidth: '100%' },
             isStacked: true,
