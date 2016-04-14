@@ -34,7 +34,7 @@
                 %td
                   %div{:id => project.id.to_s + '-pull-request-link', :class => 'hidden'}= project_pull_request_url(project, project.pull_request, format: :json)
                   %div{:id => project.id.to_s + '-pull-request'}
-                  %div= project.pull_request.red+project.pull_request.yellow+project.pull_request.green
+                  %div= project.pull_request.total >= 0 ? project.pull_request.total : ''
                 %td
                   %div{:id => project.id.to_s + '-slack-link', :class => 'hidden'}= project_slack_data_points_url(project, format: :json)
                   %div{:id => project.id.to_s + '-slack'}

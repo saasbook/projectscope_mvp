@@ -43,7 +43,8 @@ var PullRequestGraphic = function(projectID, pullRequestURL) {
             isStacked: 'percent',
             colors: ['red', 'yellow', 'green'],
             hAxis: {textPosition: 'none'},
-            vAxis: {textPosition: 'none'}
+            vAxis: {textPosition: 'none'},
+            chartArea: {'left': 0, 'top': 0, 'width': '100%', 'height': '100%'}
           };
         
         // Instantiate and draw our chart, passing in some options.
