@@ -18,7 +18,7 @@
         
           %tbody
             - @projects.each do |project|
-              %tr
+              %tr{:id => 'project-' + project.id.to_s}
                 %td
                   %h4= project.name
                   .projectID.hidden= project.id
@@ -33,7 +33,8 @@
                         %img{:src => 'https://codeclimate.com/github/' + project.pull_request.repo + '/badges/coverage.svg'}
                 %td
                   %div{:id => project.id.to_s + '-pull-request-link', :class => 'hidden'}= project_pull_request_url(project, project.pull_request, format: :json)
-                  %div{:id => project.id.to_s + '-pull-request'}
+                  %div{:id => project.id.to_s + '-pull-request', :class => 'pr-graphic'}
+                  %div{:class => 'pr-graphic'}= project.pull_request.total >= 0 ? 'Pull requests: ' + project.pull_request.total.to_s : ''
                 %td
                   %div{:id => project.id.to_s + '-slack-link', :class => 'hidden'}= project_slack_data_points_url(project, format: :json)
                   %div{:id => project.id.to_s + '-slack'}

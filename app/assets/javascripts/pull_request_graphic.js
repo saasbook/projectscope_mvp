@@ -36,14 +36,15 @@ var PullRequestGraphic = function(projectID, pullRequestURL) {
         
         // Set chart options
         var pullRequestOptions = {
-            width: 100,
-            height: 100,
+            width: 150,
+            height: 20,
             legend: { position: 'none'},
             bar: { groupWidth: '100%' },
-            isStacked: true,
+            isStacked: 'percent',
             colors: ['red', 'yellow', 'green'],
             hAxis: {textPosition: 'none'},
-            vAxis: {textPosition: 'none'}
+            vAxis: {textPosition: 'none'},
+            chartArea: {'left': 0, 'top': 0, 'width': '100%', 'height': '100%'}
           };
         
         // Instantiate and draw our chart, passing in some options.

@@ -36,20 +36,17 @@ class PullRequest < ActiveRecord::Base
       yellow = pulls_with_comments.count {|x| x == yellow_cutoff}
       green = pulls_with_comments.count {|x| x >= green_cutoff}
       
-      pr_hash = {red: red, yellow: yellow, green: green}
+      pr_hash = {red: red, yellow: yellow, green: green, total: red+yellow+green}
     rescue Octokit::InvalidRepository, Octokit::NotFound
-      pr_hash = {red: -1, yellow: -1, green: -1}
+      pr_hash = {red: -1, yellow: -1, green: -1, total: -1}
     ensure
       self.update_attributes(pr_hash)
     end
   end
   
   def repo_name_is_appropriate
-    if self.repo =~ /(.+)(\/|\.git)$/
-      self.repo = $1
-    else
-      errors.add(:repo => "Invalid repo name format")
-    end
+    self.repo.chomp!('/')
+    self.repo.chomp!('.git')
   end
   
 end

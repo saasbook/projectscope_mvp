@@ -11,6 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20160412001917) do
 
   create_table "code_climate_metrics", force: :cascade do |t|
@@ -24,6 +25,9 @@ ActiveRecord::Schema.define(version: 20160412001917) do
   end
 
   add_index "code_climate_metrics", ["project_id"], name: "index_code_climate_metrics_on_project_id"
+=======
+ActiveRecord::Schema.define(version: 20160414013209) do
+>>>>>>> master
 
   create_table "projects", force: :cascade do |t|
     t.string   "name"
@@ -39,6 +43,7 @@ ActiveRecord::Schema.define(version: 20160412001917) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string   "repo"
+    t.integer  "total"
   end
 
   add_index "pull_requests", ["project_id"], name: "index_pull_requests_on_project_id"

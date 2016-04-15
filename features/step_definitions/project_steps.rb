@@ -21,3 +21,25 @@ Then(/^I should see the "([^"]*)" (.*) graphic$/) do |project_name, metric|
   project_id = Project.find_by(name: project_name).id
   expect(page).to have_selector('#'+ project_id.to_s + '-' + metric.gsub(' ', '-'))
 end
+
+Then(/^I should see the total number of pull requests for "([^"]*)"$/) do |project_title|
+  project_id = Project.find_by(name: project_title).id
+  expect(page).to have_selector('#project-' + project_id.to_s + '> td:nth-child(2) > div:nth-child(3)')
+end
+
+Given(/^the following projects exist:$/) do |table|
+  # table is a Cucumber::Core::Ast::DataTable
+  table.hashes.each do |project_hash|
+    # each returned element will be a hash whose key is the table header.
+    # you should arrange to add that movie to the database here.
+    project = Project.create(name: project_hash[:name])
+    project.create_pull_request(repo: project_hash[:repo])
+  end
+end
+
+Then(/^the projects should be sorted by pull requests$/) do
+  sorted_projects = PullRequest.order(:red, :yellow, :green).map { |pr| pr.project }
+  sorted_projects.each_cons(2) do |chunk|
+    expect(page.body.index(chunk[0].name)).to be < page.body.index(chunk[1].name)
+  end
+end
