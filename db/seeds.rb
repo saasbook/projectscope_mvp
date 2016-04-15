@@ -9,7 +9,7 @@
 projectscope = Project.create(name: "ProjectScope")
 projectscope.create_pull_request(repo: "dhhxu/projectscope")
 projectscope.create_slack_metric(slack_api_token: ENV['SLACK_API_TOKEN'])
-projectscope.create_code_climate_metric(url: "https://codeclimate.com/github.com/github/dhhxu/projectscope")
+projectscope.create_code_climate_metric(url: "https://codeclimate.com/github/dhhxu/projectscope")
 
 project_data = [
   ['ER Moonlighter Scheduling', 'stevenbuccini/er-moonlighter-scheduler'],
