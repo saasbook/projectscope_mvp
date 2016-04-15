@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160407034420) do
+ActiveRecord::Schema.define(version: 20160414013209) do
 
   create_table "projects", force: :cascade do |t|
     t.string   "name"
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 20160407034420) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string   "repo"
+    t.integer  "total"
   end
 
   add_index "pull_requests", ["project_id"], name: "index_pull_requests_on_project_id"
