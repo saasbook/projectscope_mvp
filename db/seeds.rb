@@ -6,11 +6,13 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-moonlighter = Project.create(name: 'ER Moonlighter Scheduling')
-moonlighter.create_pull_request(repo: 'stevenbuccini/er-moonlighter-scheduler')
-moonlighter.create_slack_metric(slack_api_token: '')
+projectscope = Project.create(name: "ProjectScope")
+projectscope.create_pull_request(repo: "dhhxu/projectscope")
+projectscope.create_slack_metric(slack_api_token: ENV['SLACK_API_TOKEN'])
+projectscope.create_code_climate_metric(url: "https://codeclimate.com/github.com/github/dhhxu/projectscope")
 
 project_data = [
+  ['ER Moonlighter Scheduling', 'stevenbuccini/er-moonlighter-scheduler'],
   ['Rate My Pup', 'eabartlett/ratemypup/'],
   ['Artist Submission Site', 'cal-sfai/submission-site'],
   ['Database and development site for City Dog Share', 'sfstanley/citydogshare'],
@@ -36,7 +38,7 @@ project_data = [
   ['Lab assistant check-in', 'vincenttian/61A-Lab-Assistant'], 
   ['OK-Grading addition', 'joseph-choi/ok'], 
   ['Language Exchange Program Algorithm', 'swchoi727/LEP'], 
-  ['Cal Central', 'Garyguo2011/CalCentral-Task-Planner.git'],
+  ['Cal Central', 'Garyguo2011/CalCentral-Task-Planner'],
   ['Volunteer and Space rental portal integration', 'mleong245/bhnc-portal'], 
   ['Tracking the flow of donations of a nonprofit organization', 'donaldchen/TWC_Inventory_Tracker'], 
   ['Dogs who code', 'graceeekimmm/dogswhocode/'], 
@@ -53,10 +55,18 @@ project_data = [
   ['ER Core Staff Scheduler', 'charlespark94/ER-Core-Staff-Scheduler'],
 ]
 
-project_data.each do |p|
-  proj = Project.create(name: p[0])
-  proj.create_pull_request(repo: p[1])
+project_data.each do |name, repo|
+  proj = Project.create(name: name)
+  proj.create_pull_request(repo: repo)
   proj.create_slack_metric(slack_api_token: '')
+  
+  
+  code_climate_url = "https://codeclimate.com/github/#{repo}"
+  if repo == ""
+    code_climate_url = ""
+  end
+  proj.create_code_climate_metric(url: code_climate_url)
+  
   num_slack_users = 5 + rand(2)
   rand_msg_counts = num_slack_users.times.map{ rand(200) }
   rand_msg_counts.each do |count|

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160412001917) do
+ActiveRecord::Schema.define(version: 20160414013209) do
 
   create_table "code_climate_metrics", force: :cascade do |t|
     t.float    "score"
