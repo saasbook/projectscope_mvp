@@ -43,6 +43,9 @@ gem 'httparty'
 # For storing API keys
 gem 'figaro'
 
+# Travis gem
+gem 'travis'
+
 ### API GEMS ###
 
 # For GitHub
