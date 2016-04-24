@@ -30,11 +30,11 @@ ActiveRecord::Schema.define(version: 20160424120408) do
     t.integer  "new"
     t.integer  "old"
     t.integer  "older"
-    t.integer  "total"
     t.integer  "tracker_id"
     t.integer  "project_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "total"
   end
 
   add_index "pivotal_trackers", ["project_id"], name: "index_pivotal_trackers_on_project_id"

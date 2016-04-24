@@ -8,16 +8,16 @@ class ProjectsController < ApplicationController
     @projects.each do |project|
       # FIXME
       # Need to implement logic for fetching updates periodically
-      if project.pull_request.red == nil
+      if project.pull_request and project.pull_request.red == nil
         project.pull_request.get_data
       end
       if project.slack_metric and project.slack_data_points.length == 0
         project.slack_metric.get_data
       end
-      if project.code_climate_metric
+      if project.code_climate_metric and project.code_climate_metric.url == nil
         project.code_climate_metric.get_data
       end
-      if project.pivotal_tracker.done == nil
+      if project.pivotal_tracker and project.pivotal_tracker.done == nil
         project.pivotal_tracker.get_data
       end
     end
