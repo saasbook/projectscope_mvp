@@ -14,8 +14,8 @@
               %th GPA
               %th Coverage
               %th Pull Requests
-              %th Slack
               %th Pivotal Tracker
+              %th Slack
               -#
                 %th{:colspan => "3"}
         
@@ -41,11 +41,12 @@
                   %div{:id => project.id.to_s + '-pull-request', :class => 'pr-graphic'}
                   %div{:class => 'pr-graphic'}= project.pull_request.total >= 0 ? 'Pull requests: ' + project.pull_request.total.to_s : ''
                 %td
+                  %div{:id => project.id.to_s + '-pivotal-tracker-link', :class => 'hidden'}= project_pivotal_tracker_url(project, project.pivotal_tracker, format: :json)
+                  %div{:id => project.id.to_s + '-pivotal-tracker', :class => 'pt-graphic'}
+                  %div{:class => 'pt-graphic'}= project.pivotal_tracker.total >= 0 ? 'User stories: ' + project.pivotal_tracker.total.to_s : ''
+                %td
                   %div{:id => project.id.to_s + '-slack-link', :class => 'hidden'}= project_slack_data_points_url(project, format: :json)
                   %div{:id => project.id.to_s + '-slack'}
-                %td
-                  %div{:id => project.id.to_s + '-pivotal-tracker-link', :class => 'hidden'}= project_pivotal_tracker_url(project, project.pivotal_tracker, format: :json)
-                  %div{:id => project.id.to_s + '-pivotal-tracker'}
                 -#
                   %td= link_to 'Edit', edit_project_path(project)
                   %td= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' }

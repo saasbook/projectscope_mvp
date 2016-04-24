@@ -30,20 +30,26 @@ var PivotalTrackerGraphic = function(projectID, pivotalTrackerURL) {
     function drawPivotalTrackerGraphic() {
         // Create the data table.
         var pivotalTrackerData = google.visualization.arrayToDataTable([
-            ['Project', 'Completed', 'Started', 'Unstarted', '2+ weeks', { role: 'annotation' } ],
+            ['Project', 'Completed', 'Started', 'Unstarted', 'Unscheduled', { role: 'annotation' } ],
             ['', jsonData.done, jsonData.new, jsonData.old, jsonData.older, ''],
           ]);
         
         // Set chart options
         var pivotalTrackerOptions = {
-            width: 100,
+            width: 150,
             height: 20,
             legend: { position: 'none'},
             bar: { groupWidth: '100%' },
             isStacked: 'percent',
-            colors: ['green', 'yellow', 'red', 'black'],
+            colors: ['green', 'yellow', 'red', 'gray'],
             hAxis: {textPosition: 'none'},
-            vAxis: {textPosition: 'none'}
+            vAxis: {textPosition: 'none'},
+            chartArea: {'left': 0, 'top': 0, 'width': '100%', 'height': '100%'},
+            tooltip: {
+                ignoreBounds: true,
+                isHtml: true,
+                textStyle: {fontSize: 12}
+            }
           };
         
         // Instantiate and draw our chart, passing in some options.
