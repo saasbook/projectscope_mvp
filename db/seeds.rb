@@ -11,6 +11,7 @@ projectscope.create_pull_request(repo: "dhhxu/projectscope")
 projectscope.create_slack_metric(slack_api_token: ENV['SLACK_API_TOKEN'])
 projectscope.create_code_climate_metric(url: "https://codeclimate.com/github/dhhxu/projectscope")
 projectscope.create_pivotal_tracker(tracker_id: '1542709')
+projectscope.create_slack_trend(slack_api_token: ENV['SLACK_API_TOKEN'])
 
 project_data = [
   ['ER Moonlighter Scheduling', 'stevenbuccini/er-moonlighter-scheduler', '1282128'],
@@ -56,22 +57,26 @@ project_data = [
   ['ER Core Staff Scheduler', 'charlespark94/ER-Core-Staff-Scheduler', '1284480'],
 ]
 
-project_data.each do |name, repo, tid|
-  proj = Project.create(name: name)
-  proj.create_pull_request(repo: repo)
-  proj.create_pivotal_tracker(tracker_id: tid)
-  proj.create_slack_metric(slack_api_token: '')
+# project_data.each do |name, repo, tid|
+#   proj = Project.create(name: name)
+#   proj.create_pull_request(repo: repo)
+#   proj.create_pivotal_tracker(tracker_id: tid)
+#   proj.create_slack_metric(slack_api_token: '')
   
-  code_climate_url = "https://codeclimate.com/github/#{repo}"
-  if repo == ""
-    code_climate_url = ""
-  end
-  proj.create_code_climate_metric(url: code_climate_url)
+#   code_climate_url = "https://codeclimate.com/github/#{repo}"
+#   if repo == ""
+#     code_climate_url = ""
+#   end
+#   proj.create_code_climate_metric(url: code_climate_url)
   
-  num_slack_users = 5 + rand(2)
-  rand_msg_counts = num_slack_users.times.map{ rand(200) }
-  rand_msg_counts.each do |count|
-    rand_name = (0...8).map { (65 + rand(26)).chr }.join
-    proj.slack_metric.slack_data_points.create(user: rand_name, messages: count)
-  end
-end
+#   num_slack_users = 5 + rand(2)
+#   rand_msg_counts = num_slack_users.times.map{ rand(200) }
+#   rand_msg_counts.each do |count|
+#     rand_name = (0...8).map { (65 + rand(26)).chr }.join
+#     proj.slack_metric.slack_data_points.create(user: rand_name, messages: count)
+#   end
+
+#   st_array = 3.times.map{Random.rand(15)}
+#   proj.create_slack_trend(weekone: st_array[0], weektwo: st_array[1], weekthree: st_array[2])
+  
+# end

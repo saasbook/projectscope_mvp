@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Slack Trends</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Weekone</th>
+      <th>Weektwo</th>
+      <th>Weekthree</th>
+      <th>Project</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @slack_trends.each do |slack_trend| %>
+      <tr>
+        <td><%= slack_trend.weekone %></td>
+        <td><%= slack_trend.weektwo %></td>
+        <td><%= slack_trend.weekthree %></td>
+        <td><%= slack_trend.project_id %></td>
+        <td><%= link_to 'Show', slack_trend %></td>
+        <td><%= link_to 'Edit', edit_slack_trend_path(slack_trend) %></td>
+        <td><%= link_to 'Destroy', slack_trend, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Slack trend', new_slack_trend_path %>

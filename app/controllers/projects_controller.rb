@@ -17,6 +17,9 @@ class ProjectsController < ApplicationController
       if project.code_climate_metric
         project.code_climate_metric.get_data
       end
+      if project.slack_trend.weekone == nil
+        project.slack_trend.get_data
+      end
       if project.pivotal_tracker.done == nil
         project.pivotal_tracker.get_data
       end

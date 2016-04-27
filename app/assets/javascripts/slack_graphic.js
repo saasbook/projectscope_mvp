@@ -43,9 +43,10 @@ var SlackGraphic = function(projectID, slackURL) {
                        'startColor':{r:255, g:0, b:0, a:1},
                        'endColor':{r:0, g:255, b:0, a:1},
                        'emptyDataColor':{r:255, g:255, b:255, a:1},
-                       'mapWidth':200,
-                       'mapHeight':200,
-                       'drawBorder': false
+                      // 'mapWidth':200,
+                      // 'mapHeight':200,
+                       'drawBorder': false,
+                       'passThroughBlack': false
         };
         
         // Instantiate and draw our chart, passing in some options.
