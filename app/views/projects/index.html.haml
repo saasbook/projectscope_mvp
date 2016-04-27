@@ -43,9 +43,10 @@
                 %td
                   %div{:id => project.id.to_s + '-slack-link', :class => 'hidden'}= project_slack_data_points_url(project, format: :json)
                   %div{:id => project.id.to_s + '-slack-trend-link', :class => 'hidden'}= slack_trend_url(project, format: :json)
-                  %div{:id => project.id.to_s + '-slack', :class => 'pull-left'}
-                  %div{:id => project.id.to_s + '-slack-trend', :class => 'pull-left'}
-                  %div{:class => 'pull-left'}= project.slack_trend.weekone >= 0 ? 'Slack Grade: ' + project.slack_trend.weekone.to_s : ''
+                  %div{:style => 'height: 55px'}
+                    %div{:id => project.id.to_s + '-slack', :class => 'pull-left'}
+                    %div{:id => project.id.to_s + '-slack-trend', :class => 'pull-left'}
+                  %div= project.slack_trend.weekone >= 0 ? 'Slack Grade: ' + project.slack_trend.weekone.to_s : ''
                 %td
                   %div{:id => project.id.to_s + '-pivotal-tracker-link', :class => 'hidden'}= project_pivotal_tracker_url(project, project.pivotal_tracker, format: :json)
                   %div{:id => project.id.to_s + '-pivotal-tracker'}

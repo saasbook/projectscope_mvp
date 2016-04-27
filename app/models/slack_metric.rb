@@ -6,10 +6,11 @@ class SlackMetric < ActiveRecord::Base
     # WILL NEED TO CHANGE LOCATION OF API TOKEN ONCE EACH PROJECT HAS IT'S OWN
     client = Slack::Web::Client.new(token: ENV['SLACK_API_TOKEN'])
     users = client.users_list.members
-    start_time = (Time.now - (7).days).to_s[0,10]
+    start_time = (Time.now - (7+Time.now.wday+1).days).to_s[0,10]
+      end_time = (Time.now - (Time.now.wday).days).to_s[0,10]
     users.each do |user|
       unless user.name == "slackbot"
-        num_messages = client.search_all(query: "from:@#{user.name} after:#{start_time}").messages.total
+        num_messages = client.search_all(query: "from:@#{user.name} after:#{start_time} before:#{end_time}").messages.total
         slack_data_point = self.slack_data_points.find_by user: user.name
         if slack_data_point
           slack_data_point.update_attributes(:messages => num_messages)
