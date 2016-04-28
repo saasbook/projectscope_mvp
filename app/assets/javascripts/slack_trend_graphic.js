@@ -38,7 +38,7 @@ var SlackTrendGraphic = function(projectID, slackTrendURI) {
             if (one_week_ago_data <= 50) {
                 color = 'red'
             }
-            else if (one_week_ago_data <= 60 && one_week_ago_data > 50){
+            else if (one_week_ago_data <= 70 && one_week_ago_data > 50){
                 color = 'yellow'
             }
             else {
