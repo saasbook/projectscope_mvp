@@ -4,6 +4,9 @@ class SlackTrend < ActiveRecord::Base
   
   def get_data
     # WILL NEED TO CHANGE LOCATION OF API TOKEN ONCE EACH PROJECT HAS ITS OWN
+    if self.slack_api_token == nil or self.slack_api_token == ''
+        return
+    end
     client = Slack::Web::Client.new(token: self.slack_api_token)
     participation_total = 20.to_f # Max score for rating participation (Based on Gini Coefficient)
     msg_frequency_total = 50.to_f # Max score for msg frequency (At least 3 msgs per day)
@@ -71,7 +74,7 @@ class SlackTrend < ActiveRecord::Base
   end
   
   def message
-    if self.weekone >= 0
+    if self.weekone and self.weekone >= 0
       "Slack Grade: #{self.weekone}"
     else
       "Slack Grade: "

@@ -14,6 +14,11 @@ var SlackTrendGraphic = function(projectID, slackTrendURI) {
         return (false);
     };
     this.showSlackTrendGraphic = function(jsonData, requestStatus, xhrObject) {
+        if (jsonData.weekthree == null) {
+          jQuery('#'+projectID+'-slack-trend').html('<p class="bg-danger">No Slack Found</p>');
+          return(false);
+        }
+        
         // Set a callback to run when the Google Visualization API is loaded.
         google.charts.setOnLoadCallback(drawTrendlines);
 

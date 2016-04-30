@@ -3,6 +3,9 @@ class SlackMetric < ActiveRecord::Base
   has_many :slack_data_points
   
   def get_data
+    if self.slack_api_token == nil or self.slack_api_token == ''
+      return
+    end
     client = Slack::Web::Client.new(token: self.slack_api_token)
     users = client.users_list.members
     start_time = (Time.now - (7+Time.now.wday+1).days).to_s[0,10]

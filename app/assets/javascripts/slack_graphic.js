@@ -12,6 +12,11 @@ var SlackGraphic = function(projectID, slackURL) {
     return(false);
   };
   this.showSlackGraphic = function(jsonData, requestStatus, xhrObject) {
+    if (jsonData.length == 0) {
+      jQuery('#'+projectID+'-slack').html('<p class="bg-danger">No Slack Found</p>');
+      return(false);
+    }
+    
     // Set a callback to run when the Google Visualization API is loaded.
     google.charts.setOnLoadCallback(drawSlackGraphic);
     

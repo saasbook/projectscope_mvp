@@ -62,6 +62,7 @@ project_data.each do |name, repo, tid|
   proj.create_pull_request(repo: repo)
   proj.create_pivotal_tracker(tracker_id: tid)
   proj.create_slack_metric(slack_api_token: '')
+  proj.create_slack_trend(slack_api_token: '')
   
   code_climate_url = "https://codeclimate.com/github/#{repo}"
   if repo == ""
@@ -69,14 +70,14 @@ project_data.each do |name, repo, tid|
   end
   proj.create_code_climate_metric(url: code_climate_url)
   
-  num_slack_users = 5 + rand(2)
-  rand_msg_counts = num_slack_users.times.map{ rand(200) }
-  rand_msg_counts.each do |count|
-    rand_name = (0...8).map { (65 + rand(26)).chr }.join
-    proj.slack_metric.slack_data_points.create(user: rand_name, messages: count)
-  end
+  # num_slack_users = 5 + rand(2)
+  # rand_msg_counts = num_slack_users.times.map{ rand(200) }
+  # rand_msg_counts.each do |count|
+  #   rand_name = (0...8).map { (65 + rand(26)).chr }.join
+  #   proj.slack_metric.slack_data_points.create(user: rand_name, messages: count)
+  # end
 
-  st_array = 3.times.map{Random.rand(50..100)}
-  proj.create_slack_trend(weekone: st_array[0], weektwo: st_array[1], weekthree: st_array[2])
+  # st_array = 3.times.map{Random.rand(50..100)}
+  # proj.create_slack_trend(weekone: st_array[0], weektwo: st_array[1], weekthree: st_array[2])
   
 end
