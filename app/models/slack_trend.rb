@@ -33,7 +33,6 @@ class SlackTrend < ActiveRecord::Base
         total_score += num_messages_score*(participation_total/num_message_threshhold)
       end
       
-      
       #Grade frequency of messages
       (0..6).each do |d|
         day = (Time.now - (7*i+Time.now.wday+d).days).to_s[0,10]
@@ -70,5 +69,14 @@ class SlackTrend < ActiveRecord::Base
     end
     return (n+1).to_f/ n - 2.0 * temp / ((array_sum)*n)
   end
+  
+  def message
+    if self.weekone >= 0
+      "Slack Grade: #{self.weekone}"
+    else
+      "Slack Grade: "
+    end
+  end
+  
   
 end
