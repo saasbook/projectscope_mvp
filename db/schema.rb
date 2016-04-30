@@ -11,7 +11,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160424120408) do
+
+ActiveRecord::Schema.define(version: 20160424225007) do
 
   create_table "code_climate_metrics", force: :cascade do |t|
     t.float    "score"
@@ -76,5 +77,17 @@ ActiveRecord::Schema.define(version: 20160424120408) do
   end
 
   add_index "slack_metrics", ["project_id"], name: "index_slack_metrics_on_project_id"
+
+  create_table "slack_trends", force: :cascade do |t|
+    t.integer  "weekone"
+    t.integer  "weektwo"
+    t.integer  "weekthree"
+    t.integer  "project_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.string   "slack_api_token"
+  end
+
+  add_index "slack_trends", ["project_id"], name: "index_slack_trends_on_project_id"
 
 end

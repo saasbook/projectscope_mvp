@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Weekone:</strong>
+  <%= @slack_trend.weekone %>
+</p>
+
+<p>
+  <strong>Weektwo:</strong>
+  <%= @slack_trend.weektwo %>
+</p>
+
+<p>
+  <strong>Weekthree:</strong>
+  <%= @slack_trend.weekthree %>
+</p>
+
+<p>
+  <strong>Project:</strong>
+  <%= @slack_trend.project_id %>
+</p>
+
+<%= link_to 'Edit', edit_slack_trend_path(@slack_trend) %> |
+<%= link_to 'Back', slack_trends_path %>

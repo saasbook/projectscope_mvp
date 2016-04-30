@@ -5,6 +5,8 @@ var generateGraphics = function () {
        pullRequestGraphic.getPullRequestData();
        var slackGraphic = new SlackGraphic(projectID, jQuery(this).find("#"+projectID+"-slack-link").text());
        slackGraphic.getSlackData();
+       var slackTrendGraphic = new SlackTrendGraphic(projectID, jQuery(this).find("#"+projectID+"-slack-trend-link").text());
+       slackTrendGraphic.getSlackTrendData();
        var pivotalTrackerGraphic = new PivotalTrackerGraphic(projectID, jQuery(this).find('#'+projectID+"-pivotal-tracker-link").text());
        pivotalTrackerGraphic.getPivotalTrackerData();
     });
