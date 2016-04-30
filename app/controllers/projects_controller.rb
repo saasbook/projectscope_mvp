@@ -14,7 +14,7 @@ class ProjectsController < ApplicationController
       if project.slack_metric and project.slack_data_points.length == 0
         project.slack_metric.get_data
       end
-      if project.code_climate_metric and project.code_climate_metric.url == nil
+      if project.code_climate_metric and project.code_climate_metric.score == nil
         project.code_climate_metric.get_data
       end
       if project.pivotal_tracker and project.pivotal_tracker.done == nil
