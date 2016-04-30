@@ -15,6 +15,21 @@ class CodeClimateMetric < ActiveRecord::Base
         end
     end
     
+    def score_color
+        if self.score == nil
+            color = "#cccccc"
+        elsif self.score >= 0.8
+            color = "#bff000"
+        elsif self.score >= 0.6
+            color = "#ffff99"
+        elsif self.score >= 0.4
+            color = "#ffb84d"
+        else
+            color = "#ff6633"
+        end
+        "background-color:#{color}"
+    end
+    
     def update_score
         # attributes gpa and coverage will exist
         # Score is in interval [0, 1]

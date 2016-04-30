@@ -44,6 +44,22 @@ class PullRequest < ActiveRecord::Base
     end
   end
   
+  def message
+      if self.total >= 0
+        "Pull Requests: #{self.total}"
+      else
+        'Pull Requests:'
+      end
+  end
+  
+  def url
+      if self.repo
+        "https://github.com/#{self.repo}"
+      else
+        ''
+      end
+  end
+  
   def repo_name_is_appropriate
     self.repo.chomp!('/')
     self.repo.chomp!('.git')

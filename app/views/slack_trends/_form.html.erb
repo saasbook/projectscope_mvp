@@ -1,0 +1,33 @@
+<%= form_for(@slack_trend) do |f| %>
+  <% if @slack_trend.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@slack_trend.errors.count, "error") %> prohibited this slack_trend from being saved:</h2>
+
+      <ul>
+      <% @slack_trend.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :weekone %><br>
+    <%= f.number_field :weekone %>
+  </div>
+  <div class="field">
+    <%= f.label :weektwo %><br>
+    <%= f.number_field :weektwo %>
+  </div>
+  <div class="field">
+    <%= f.label :weekthree %><br>
+    <%= f.number_field :weekthree %>
+  </div>
+  <div class="field">
+    <%= f.label :project_id %><br>
+    <%= f.number_field :project_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

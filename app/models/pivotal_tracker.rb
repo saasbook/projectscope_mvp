@@ -17,5 +17,22 @@ class PivotalTracker < ActiveRecord::Base
       self.update_attributes(pt_hash)
     end
   end
+  
+  def url
+      if self.tracker_id
+        "https://www.pivotaltracker.com/n/projects/#{self.tracker_id}"
+      else
+        ''
+      end
+  end
+  
+  def message
+    if self.total and self.total >= 0
+      "User stories: #{project.pivotal_tracker.total}"
+    else
+      "User stories: "
+    end
+  
+  end
 
 end

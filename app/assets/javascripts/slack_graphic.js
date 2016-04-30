@@ -12,6 +12,11 @@ var SlackGraphic = function(projectID, slackURL) {
     return(false);
   };
   this.showSlackGraphic = function(jsonData, requestStatus, xhrObject) {
+    if (jsonData.length == 0) {
+      jQuery('#'+projectID+'-slack').html('<p class="bg-danger">No Slack Found</p>');
+      return(false);
+    }
+    
     // Set a callback to run when the Google Visualization API is loaded.
     google.charts.setOnLoadCallback(drawSlackGraphic);
     
@@ -37,16 +42,6 @@ var SlackGraphic = function(projectID, slackURL) {
             slackData.setCell(i, j, numMessages);
           }
         }
-        
-        // // Set chart options
-        // var slackOptions = {'useRowLabels':false,
-        //               'startColor':{r:255, g:0, b:0, a:1},
-        //               'endColor':{r:0, g:255, b:0, a:1},
-        //               'emptyDataColor':{r:255, g:255, b:255, a:1},
-        //               'mapWidth':200,
-        //               'mapHeight':200,
-        //               'drawBorder': false
-        // };
         
         var slackOptions = {'useRowLabels':false,
                        'startColor':{r:255, g:0, b:0, a:1},

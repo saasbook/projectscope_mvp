@@ -5,8 +5,10 @@
     %div{:class => ['col-sm-12', 'col-md-12', 'main']}
       %h1.page-header ProjectScope
       
+      -#%p
+        = link_to 'Add a Project', new_project_path
+        
       .table-responsive
-      
         %table{:class => ['table', 'table-striped']}
           %thead
             %tr
@@ -21,10 +23,10 @@
         
           %tbody
             - @projects.each do |project|
-              %tr{:id => 'project-' + project.id.to_s}
+              %tr{:id => %Q{project-#{project.id}}, :style => project.code_climate_color}
                 %td
                   %h4
-                    = link_to project.name, 'https://github.com/' + project.pull_request.repo, :target => '_blank'
+                    = link_to project.name, project_path(project)
                   .projectID.hidden= project.id
                 %td
                   %div{:class => 'badge-container-gpa'}
@@ -37,19 +39,32 @@
                       %a{:href => project.code_climate_metric.coverage_url, :target => '_blank'}
                         %img{:src => project.code_climate_metric.coverage_badge_url}
                 %td
-                  %div{:id => project.id.to_s + '-pull-request-link', :class => 'hidden'}= project_pull_request_url(project, project.pull_request, format: :json)
-                  %div{:id => project.id.to_s + '-pull-request', :class => 'pr-graphic'}
-                  %div{:class => 'pr-graphic'}= project.pull_request.total >= 0 ? 'Pull requests: ' + project.pull_request.total.to_s : ''
+                  %div{:id => %Q{#{project.id}-pull-request-link}, :class => 'hidden'}
+                    = project_pull_request_url(project, project.pull_request, format: :json)
+                  %div{:id => %Q{#{project.id}-pull-request}, :class => 'pr-graphic'}
+                  %div{:class => 'pr-graphic'}
+                    = link_to project.pull_request.message, project.pull_request.url, :target => '_blank'
                 %td
-                  %div{:id => project.id.to_s + '-pivotal-tracker-link', :class => 'hidden'}= project_pivotal_tracker_url(project, project.pivotal_tracker, format: :json)
-                  %div{:id => project.id.to_s + '-pivotal-tracker', :class => 'pt-graphic'}
-                  %div{:class => 'pt-graphic'}= project.pivotal_tracker.total >= 0 ? 'User stories: ' + project.pivotal_tracker.total.to_s : ''
+                  %div{:id => %Q{#{project.id}-pivotal-tracker-link}, :class => 'hidden'}
+                    = project_pivotal_tracker_url(project, project.pivotal_tracker, format: :json)
+                  %div{:id => %Q{#{project.id}-pivotal-tracker}, :class => 'pt-graphic'}
+                  %div{:class => 'pt-graphic'}
+                    = link_to project.pivotal_tracker.message, project.pivotal_tracker.url, :target => '_blank'
                 %td
-                  %div{:id => project.id.to_s + '-slack-link', :class => 'hidden'}= project_slack_data_points_url(project, format: :json)
-                  %div{:id => project.id.to_s + '-slack'}
+                  %div{:id => %Q{#{project.id}-slack-link}, :class => 'hidden'}
+                    = project_slack_data_points_url(project, format: :json)
+                  %div{:id => %Q{#{project.id}-slack-trend-link}, :class => 'hidden'}
+                    = slack_trend_url(project, format: :json)
+                  %div{:style => 'height: 55px'}
+                    %div{:id => %Q{#{project.id}-slack}, :class => 'pull-left'}
+                    %div{:id => %Q{#{project.id}-slack-trend}, :class => 'pull-left'}
+                  %div
+                    = project.slack_trend.message
+                %td
+                  %div{:id => %Q{#{project.id}-pivotal-tracker-link}, :class => 'hidden'}
+                    = project_pivotal_tracker_url(project, project.pivotal_tracker, format: :json)
+                  %div{:id => %Q{#{project.id}-pivotal-tracker}}
                 -#
                   %td= link_to 'Edit', edit_project_path(project)
                   %td= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' }
-      -#
-        %p
-          = link_to 'Add a Project', new_project_path
+
