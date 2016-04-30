@@ -27,7 +27,7 @@ class PivotalTracker < ActiveRecord::Base
   end
   
   def message
-    if self.total >= 0
+    if self.total and self.total >= 0
       "User stories: #{project.pivotal_tracker.total}"
     else
       "User stories: "
