@@ -12,15 +12,24 @@ var PivotalTrackerGraphic = function(projectID, pivotalTrackerURL) {
     return(false);
   };
   this.showPivotalTrackerGraphic = function(jsonData, requestStatus, xhrObject) {
-    if (jsonData.done == -1) {
-        jQuery('#'+projectID+'-pivotal-tracker').html('<p class="bg-danger">Invalid tracker project</p>');
+    var valid = true;
+    var err_msg = '';
+    if (jsonData.tracker_id == null) {
+        valid = false;
+        err_msg = '<p class="bg-danger">Tracker does not exist</p>';
+    } else if (jsonData.done == -1) {
+        valid = false;
+        err_msg = '<p class="bg-danger">Invalid tracker project</p>';
+    } else if (jsonData.done == 0 && jsonData.new == 0 && jsonData.old == 0 && jsonData.older == 0) {
+        valid = false;
+        err_msg = '<p class="bg-danger">No open stories</p>';
+    }
+
+    if (!valid) {
+        jQuery('#'+projectID+'-pivotal-tracker').html(err_msg);
         return(false);
     }
-    
-    if (jsonData.done == 0 && jsonData.new == 0 && jsonData.old == 0 && jsonData.older == 0) {
-        jQuery('#'+projectID+'-pivotal-tracker').html('<p class="bg-danger">No open stories</p>');
-        return(false);
-    }
+
     // Set a callback to run when the Google Visualization API is loaded.
     google.charts.setOnLoadCallback(drawPivotalTrackerGraphic);
     
