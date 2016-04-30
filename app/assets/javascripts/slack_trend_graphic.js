@@ -19,7 +19,7 @@ var SlackTrendGraphic = function(projectID, slackTrendURI) {
 
         function drawTrendlines() {
             var data = new google.visualization.DataTable();
-            data.addColumn('number', 'X');
+            data.addColumn('string', '');
             data.addColumn('number', 'Score');
             var color = '#FFFFFF'
 
@@ -28,9 +28,9 @@ var SlackTrendGraphic = function(projectID, slackTrendURI) {
             var three_week_ago_data = jsonData.weekthree;
 
             data.addRows([
-                [0, three_week_ago_data],
-                [1, two_week_ago_data],
-                [2, one_week_ago_data]
+                ['3 Weeks Ago', three_week_ago_data],
+                ['2 Weeks Ago', two_week_ago_data],
+                ['Last Week', one_week_ago_data]
             ]);
 
             var difference = one_week_ago_data - two_week_ago_data;
