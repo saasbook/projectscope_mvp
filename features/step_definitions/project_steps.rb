@@ -32,8 +32,15 @@ Given(/^the following projects exist:$/) do |table|
   table.hashes.each do |project_hash|
     # each returned element will be a hash whose key is the table header.
     # you should arrange to add that movie to the database here.
-    project = Project.create(name: project_hash[:name])
-    project.create_pull_request(repo: project_hash[:repo])
+    
+    proj = Project.create(name: project_hash[:name])
+    proj.create_pull_request(repo: project_hash[:repo])
+    proj.create_pivotal_tracker(tracker_id: project_hash[:tid])
+    code_climate_url = "https://codeclimate.com/github/#{project_hash[:repo]}"
+    proj.create_code_climate_metric(url: code_climate_url)
+    proj.create_slack_metric(slack_api_token: '')
+    proj.create_slack_trend(slack_api_token: '')
+    
   end
 end
 

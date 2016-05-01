@@ -20,7 +20,7 @@ class ProjectsController < ApplicationController
       if project.pivotal_tracker and project.pivotal_tracker.done == nil
         project.pivotal_tracker.get_data
       end
-      if project.slack_trend.weekone == nil
+      if project.slack_trend != nil && project.slack_trend.weekone == nil
         project.slack_trend.get_data
       end
     end

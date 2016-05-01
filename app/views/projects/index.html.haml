@@ -13,7 +13,7 @@
           %thead
             %tr
               %th Project
-              %th GPA
+              %th{:class => @gpa_header}= link_to 'GPA', projects_path(:sort => 'gpa'), :id => 'gpa_header'
               %th Coverage
               %th Pull Requests
               %th Pivotal Tracker
