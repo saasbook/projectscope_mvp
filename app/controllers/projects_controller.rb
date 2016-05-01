@@ -4,6 +4,7 @@ class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
   def index
+    sort = params[:sort]
     @projects = Project.all
     @projects.each do |project|
       # FIXME
@@ -23,6 +24,18 @@ class ProjectsController < ApplicationController
       if project.slack_trend != nil && project.slack_trend.weekone == nil
         project.slack_trend.get_data
       end
+    end
+    if sort == 'gpa'
+      @projects = Project.includes(:code_climate_metric).order("code_climate_metrics.gpa asc")
+    end
+    if sort == 'coverage'
+      @projects = Project.includes(:code_climate_metric).order("code_climate_metrics.coverage asc")
+    end
+    if sort == 'prs'
+      @projects = Project.includes(:code_climate_metric).order("code_climate_metrics.gpa asc")
+    end
+    if sort == 'pts'
+      @projects = Project.includes(:code_climate_metric).order("code_climate_metrics.gpa asc")
     end
   end
 
