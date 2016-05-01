@@ -11,8 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 20160424225007) do
+ActiveRecord::Schema.define(version: 20160501032628) do
 
   create_table "code_climate_metrics", force: :cascade do |t|
     t.float    "score"
@@ -36,6 +35,7 @@ ActiveRecord::Schema.define(version: 20160424225007) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "total"
+    t.float    "score"
   end
 
   add_index "pivotal_trackers", ["project_id"], name: "index_pivotal_trackers_on_project_id"
@@ -55,6 +55,7 @@ ActiveRecord::Schema.define(version: 20160424225007) do
     t.datetime "updated_at", null: false
     t.string   "repo"
     t.integer  "total"
+    t.float    "score"
   end
 
   add_index "pull_requests", ["project_id"], name: "index_pull_requests_on_project_id"

@@ -32,10 +32,10 @@ class ProjectsController < ApplicationController
       @projects = Project.includes(:code_climate_metric).order("code_climate_metrics.coverage asc")
     end
     if sort == 'prs'
-      @projects = Project.includes(:code_climate_metric).order("code_climate_metrics.gpa asc")
+      @projects = Project.includes(:pull_request).order("pull_requests.score asc")
     end
     if sort == 'pts'
-      @projects = Project.includes(:code_climate_metric).order("code_climate_metrics.gpa asc")
+      @projects = Project.includes(:pivotal_tracker).order("pivotal_trackers.score asc")
     end
   end
 
