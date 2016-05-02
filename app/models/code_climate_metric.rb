@@ -107,18 +107,30 @@ class CodeClimateMetric < ActiveRecord::Base
     end
     
     def coverage_url
-        fix_url
-        self.url + '/coverage' 
+        if not self.url == ''
+            fix_url
+            self.url + '/coverage' 
+        else
+            ''
+        end
     end
     
     def gpa_badge_url
-        fix_url
-        self.url + '/badges/gpa.svg'
+        if not self.url == ''
+            fix_url
+            self.url + '/badges/gpa.svg'
+        else
+            ''
+        end
     end
     
     def coverage_badge_url
-        fix_url
-        self.url + '/badges/coverage.svg'
+        if not self.url == ''
+            fix_url
+            self.url + '/badges/coverage.svg'
+        else
+            ''
+        end
     end
     
     private

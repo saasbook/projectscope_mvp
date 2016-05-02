@@ -13,10 +13,10 @@
           %thead
             %tr
               %th Project
-              %th GPA
-              %th Coverage
-              %th Pull Requests
-              %th Pivotal Tracker
+              %th{:class => @gpa_header}= link_to 'GPA', projects_path(:sort => 'gpa'), :id => 'gpa_header'
+              %th{:class => @coverage_header}= link_to 'Coverage', projects_path(:sort => 'coverage'), :id => 'coverage_header'
+              %th{:class => @prs_header}= link_to 'Pull Requests', projects_path(:sort => 'prs'), :id => 'prs_header' 
+              %th{:class => @pts_header}= link_to 'Pivotal Tracker', projects_path(:sort => 'pts'), :id => 'pts_header' 
               %th Slack
               -#
                 %th{:colspan => "3"}
