@@ -4,7 +4,10 @@ class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
   def index
-    sort = params[:sort]
+    sort = params[:sort] || session[:sort]
+    if params[:sort] == nil
+      session[:sort] == nil
+    end
     @projects = Project.all
     @projects.each do |project|
       # FIXME
@@ -26,16 +29,41 @@ class ProjectsController < ApplicationController
       end
     end
     if sort == 'gpa'
-      @projects = Project.includes(:code_climate_metric).order("code_climate_metrics.gpa asc")
+      if session[:sort] == 'gpa'
+        @projects = Project.includes(:code_climate_metric).order("code_climate_metrics.gpa desc")
+        session[:sort] = 'dgpa'
+      else
+        @projects = Project.includes(:code_climate_metric).order("code_climate_metrics.gpa asc")
+        session[:sort] = 'gpa'
+      end
+      
     end
     if sort == 'coverage'
-      @projects = Project.includes(:code_climate_metric).order("code_climate_metrics.coverage asc")
+      if session[:sort] == 'coverage'
+        @projects = Project.includes(:code_climate_metric).order("code_climate_metrics.coverage desc")
+        session[:sort] = 'dcoverage'
+      else
+        @projects = Project.includes(:code_climate_metric).order("code_climate_metrics.coverage asc")
+        session[:sort] = 'coverage'
+      end  
     end
     if sort == 'prs'
-      @projects = Project.includes(:pull_request).order("pull_requests.score asc")
+      if session[:sort] == 'prs'
+        @projects = Project.includes(:code_climate_metric).order("pull_requests.score desc")
+        session[:sort] = 'dprs'
+      else
+        @projects = Project.includes(:pull_request).order("pull_requests.score asc")
+        session[:sort] = 'prs'
+      end
     end
     if sort == 'pts'
-      @projects = Project.includes(:pivotal_tracker).order("pivotal_trackers.score asc")
+      if session[:sort] == 'pts'
+        @projects = Project.includes(:code_climate_metric).order("pivotal_trackers.score desc")
+        session[:sort] = 'dpts'
+      else
+        @projects = Project.includes(:pivotal_tracker).order("pivotal_trackers.score asc")
+        session[:sort] = 'pts'
+      end
     end
   end
 
