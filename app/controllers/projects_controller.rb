@@ -8,7 +8,41 @@ class ProjectsController < ApplicationController
     if params[:sort] == nil
       session[:sort] == nil
     end
-    @projects = Project.all
+    if sort == 'gpa'
+      if session[:sort] == 'gpa'
+        @projects = Project.includes(:code_climate_metric).order("code_climate_metrics.gpa desc")
+        session[:sort] = 'dgpa'
+      else
+        @projects = Project.includes(:code_climate_metric).order("code_climate_metrics.gpa asc")
+        session[:sort] = 'gpa'
+      end
+    elsif sort == 'coverage'
+      if session[:sort] == 'coverage'
+        @projects = Project.includes(:code_climate_metric).order("code_climate_metrics.coverage desc")
+        session[:sort] = 'dcoverage'
+      else
+        @projects = Project.includes(:code_climate_metric).order("code_climate_metrics.coverage asc")
+        session[:sort] = 'coverage'
+      end  
+    elsif sort == 'prs'
+      if session[:sort] == 'prs'
+        @projects = Project.includes(:code_climate_metric).order("pull_requests.score desc")
+        session[:sort] = 'dprs'
+      else
+        @projects = Project.includes(:pull_request).order("pull_requests.score asc")
+        session[:sort] = 'prs'
+      end
+    elsif sort == 'pts'
+      if session[:sort] == 'pts'
+        @projects = Project.includes(:code_climate_metric).order("pivotal_trackers.score desc")
+        session[:sort] = 'dpts'
+      else
+        @projects = Project.includes(:pivotal_tracker).order("pivotal_trackers.score asc")
+        session[:sort] = 'pts'
+      end
+    else
+      @projects = Project.all
+    end
     @projects.each do |project|
       # FIXME
       # Need to implement logic for fetching updates periodically
@@ -26,43 +60,6 @@ class ProjectsController < ApplicationController
       end
       if project.slack_trend != nil && project.slack_trend.weekone == nil
         project.slack_trend.get_data
-      end
-    end
-    if sort == 'gpa'
-      if session[:sort] == 'gpa'
-        @projects = Project.includes(:code_climate_metric).order("code_climate_metrics.gpa desc")
-        session[:sort] = 'dgpa'
-      else
-        @projects = Project.includes(:code_climate_metric).order("code_climate_metrics.gpa asc")
-        session[:sort] = 'gpa'
-      end
-      
-    end
-    if sort == 'coverage'
-      if session[:sort] == 'coverage'
-        @projects = Project.includes(:code_climate_metric).order("code_climate_metrics.coverage desc")
-        session[:sort] = 'dcoverage'
-      else
-        @projects = Project.includes(:code_climate_metric).order("code_climate_metrics.coverage asc")
-        session[:sort] = 'coverage'
-      end  
-    end
-    if sort == 'prs'
-      if session[:sort] == 'prs'
-        @projects = Project.includes(:code_climate_metric).order("pull_requests.score desc")
-        session[:sort] = 'dprs'
-      else
-        @projects = Project.includes(:pull_request).order("pull_requests.score asc")
-        session[:sort] = 'prs'
-      end
-    end
-    if sort == 'pts'
-      if session[:sort] == 'pts'
-        @projects = Project.includes(:code_climate_metric).order("pivotal_trackers.score desc")
-        session[:sort] = 'dpts'
-      else
-        @projects = Project.includes(:pivotal_tracker).order("pivotal_trackers.score asc")
-        session[:sort] = 'pts'
       end
     end
   end
