@@ -26,7 +26,7 @@ class ProjectsController < ApplicationController
       end  
     elsif sort == 'prs'
       if session[:sort] == 'prs'
-        @projects = Project.includes(:code_climate_metric).order("pull_requests.score desc")
+        @projects = Project.includes(:pull_request).order("pull_requests.score desc")
         session[:sort] = 'dprs'
       else
         @projects = Project.includes(:pull_request).order("pull_requests.score asc")
