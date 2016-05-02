@@ -34,7 +34,7 @@ class ProjectsController < ApplicationController
       end
     elsif sort == 'pts'
       if session[:sort] == 'pts'
-        @projects = Project.includes(:code_climate_metric).order("pivotal_trackers.score desc")
+        @projects = Project.includes(:pivotal_tracker).order("pivotal_trackers.score desc")
         session[:sort] = 'dpts'
       else
         @projects = Project.includes(:pivotal_tracker).order("pivotal_trackers.score asc")
